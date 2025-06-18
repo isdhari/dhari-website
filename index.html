@@ -11,53 +11,82 @@
       background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 100%);
       color: white;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
     header {
-    p {
-      font-size: 1.2rem;
-      padding: 2rem;
+      padding: 4rem 2rem 2rem;
       text-align: center;
     }
     h1 {
-      font-size: 3rem;
+      font-size: 4rem;
+      color: #fff;
+      text-shadow: 0 0 15px #ffffffaa;
+      margin-bottom: 1rem;
     }
-    p {
-      font-size: 1.2rem;
-      max-width: 800px;
-      margin: 1rem auto;
+    p.description {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      color: #ccc;
     }
-    .cv-button {
-      background-color: #1e90ff;
-      padding: 0.7rem 1.5rem;
-      color: white;
+    .cv-top {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .cv-top a {
+      color: #1e90ff;
       text-decoration: none;
+      font-weight: bold;
+      border: 1px solid #1e90ff;
+      padding: 0.5rem 1rem;
       border-radius: 8px;
-      transition: background-color 0.3s;
+      transition: background 0.3s;
     }
-    .cv-button:hover {
-      background-color: #0a74da;
+    .cv-top a:hover {
+      background: #1e90ff;
+      color: #000;
     }
-    .skills {
+    section {
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px #ffffff33;
+    }
+    .languages {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      overflow-x: auto;
       gap: 2rem;
-      margin: 3rem auto;
-      max-width: 900px;
+      padding: 1rem;
+      justify-content: start;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
-    .skills img {
-      width: 80px;
-      animation: float 3s ease-in-out infinite;
+    .languages img {
+      width: 50px;
+      height: 50px;
+      animation: slide 10s linear infinite;
+      scroll-snap-align: center;
     }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    @keyframes slide {
+      0% { transform: translateX(100vw); }
+      100% { transform: translateX(-100vw); }
+    }
+    .skills p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #ccc;
     }
     .socials {
       display: flex;
       justify-content: center;
       gap: 1.5rem;
-      margin: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
     }
     .socials a {
       color: #1e90ff;
@@ -67,20 +96,31 @@
   </style>
 </head>
 <body>
+  <div class="cv-top">
+    <a href="file:///C:/Users/dari/Downloads/Cv-Dhari%20Abdullah%20%20(1).pdf" target="_blank">Take a look at my CV</a>
+  </div>
+
   <header>
     <h1>Dhari Almkhidsh</h1>
-    <p>Software Engineering Student at University of Hail. Passionate about coding, solving problems, and building web experiences. Here are some of my key skills.</p>
-    <a href="Dhari-Almkhidsh-CV.pdf" class="cv-button" target="_blank">View My CV</a>
+    <p class="description">I'm a software engineering student at the University of Hail. I enjoy turning ideas into real-world software and exploring the latest tech trends. Welcome to my personal space on the web!</p>
   </header>
 
+  <section>
+    <h2 class="section-title">My Languages</h2>
+    <div class="languages">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+    </div>
+  </section>
+
   <section class="skills">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" />
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+    <h2 class="section-title">Skills</h2>
+    <p>I have a strong foundation in computer science and problem solving. My skills include debugging, clean code writing, API integration, responsive web design, and working with version control systems like Git. I'm constantly improving my ability to learn quickly and adapt to new technologies.</p>
   </section>
 
   <section class="socials">
