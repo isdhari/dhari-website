@@ -13,8 +13,8 @@
             --secondary-bg: #0d0d1a;
             --text-color-light: #e0e0e0;
             --text-color-dark: #ccc;
-            --accent-color: #00ffff; /* Neon cyan */
-            --accent-glow: #00ffffaa;
+            --accent-color: #9933ff; /* Neon Purple */
+            --accent-glow: #9933ffaa;
             --shadow-intensity: 0.15;
             --header-height: 80px; /* Height of the fixed header */
         }
@@ -49,9 +49,25 @@
             to { background-position: 100% 100%; }
         }
 
+        /* --- Earth Background Overlay (New) --- */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Placeholder for Earth image. Replace with a high-res, dark earth image if available. */
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Full_Globe_Map.png/1280px-Full_Globe_Map.png') no-repeat center center fixed;
+            background-size: cover;
+            opacity: 0.03; /* Very subtle */
+            z-index: -2; /* Below stars */
+        }
+
+
         /* --- Global Text Styles --- */
         h1, h2, h3, p, a, span, li {
-            text-shadow: 0 0 10px var(--accent-glow), 0 0 20px rgba(0, 255, 255, 0.3); /* Enhanced neon glow */
+            text-shadow: 0 0 10px var(--accent-glow), 0 0 20px rgba(153, 51, 255, 0.3); /* Enhanced neon glow with purple */
         }
 
         /* --- Navigation Bar --- */
@@ -67,7 +83,7 @@
             align-items: center;
             padding: 0 2rem;
             height: var(--header-height);
-            box-shadow: 0 2px 10px rgba(0, 255, 255, var(--shadow-intensity));
+            box-shadow: 0 2px 10px rgba(153, 51, 255, var(--shadow-intensity));
         }
 
         .navbar ul {
@@ -147,7 +163,7 @@
             border-radius: 50px; /* Pill shape */
             transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
             font-size: 1.2rem;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(153, 51, 255, 0.4);
         }
 
         .cv-link a:hover {
@@ -208,21 +224,29 @@
             max-width: 900px;
             margin: 0 auto 2.5rem;
             text-align: left;
-            background: rgba(0, 255, 255, 0.05);
+            background: rgba(153, 51, 255, 0.05); /* Purple tint */
             border-radius: 15px;
             padding: 2rem;
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(153, 51, 255, 0.1);
+            box-shadow: 0 0 15px rgba(153, 51, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition */
         }
         .education-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(153, 51, 255, 0.2);
         }
         .education-item h3 {
             color: var(--accent-color);
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
+            display: flex; /* Allow content and image on same line */
+            align-items: center; /* Vertically align them */
+            gap: 10px; /* Space between text and logo */
+        }
+        .education-item .university-logo { /* New style for logo */
+            height: 40px; /* Adjust size as needed */
+            width: auto;
+            filter: drop-shadow(0 0 8px rgba(153, 51, 255, 0.6)); /* Glow effect for logo */
         }
         .education-item p {
             font-size: 1.1rem;
@@ -300,31 +324,31 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 255, 255, 0.05);
+            background: rgba(153, 51, 255, 0.05); /* Purple tint */
             border-radius: 15px;
             padding: 1.5rem 1rem;
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(153, 51, 255, 0.1);
+            box-shadow: 0 0 15px rgba(153, 51, 255, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
             min-height: 150px; /* Ensure consistent height */
         }
         .skill-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(153, 51, 255, 0.2);
         }
 
         .skill-item i { /* For Devicon icons */
             font-size: 3.5rem; /* Large icon size */
             color: var(--accent-color);
             margin-bottom: 0.8rem;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+            text-shadow: 0 0 10px rgba(153, 51, 255, 0.6);
         }
         .skill-item img { /* For any potential image icons */
             width: 60px;
             height: 60px;
             margin-bottom: 0.8rem;
-            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6));
+            filter: drop-shadow(0 0 10px rgba(153, 51, 255, 0.6));
         }
 
         .skill-item h4 {
@@ -332,7 +356,7 @@
             font-size: 1.1rem;
             font-weight: 600;
             margin: 0;
-            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 5px rgba(153, 51, 255, 0.3);
         }
 
         /* Specific styles for soft skills/languages if they don't have icons */
@@ -355,26 +379,26 @@
         }
 
         .project-card {
-            background: rgba(0, 255, 255, 0.05); /* Subtle transparent background with accent */
+            background: rgba(153, 51, 255, 0.05); /* Purple tint */
             border-radius: 15px;
             padding: 2rem;
             text-align: left;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(153, 51, 255, 0.1);
+            box-shadow: 0 0 15px rgba(153, 51, 255, 0.1);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 0 30px var(--accent-color);
-            background: rgba(0, 255, 255, 0.08);
+            background: rgba(153, 51, 255, 0.08);
         }
 
         .project-card h3 {
             color: var(--accent-color);
             font-size: 1.7rem;
             margin-bottom: 0.8rem;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+            text-shadow: 0 0 10px rgba(153, 51, 255, 0.6);
         }
 
         .project-card p {
@@ -416,13 +440,13 @@
         }
 
         .certificate-card {
-            background: rgba(0, 255, 255, 0.05);
+            background: rgba(153, 51, 255, 0.05); /* Purple tint */
             border-radius: 15px;
             padding: 1rem;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(153, 51, 255, 0.1);
+            box-shadow: 0 0 15px rgba(153, 51, 255, 0.1);
         }
 
         .certificate-card:hover {
@@ -436,14 +460,14 @@
             border-radius: 10px;
             display: block; /* Remove extra space below image */
             margin: 0 auto 1rem; /* Center and add margin below */
-            border: 1px solid rgba(0, 255, 255, 0.2);
+            border: 1px solid rgba(153, 51, 255, 0.2);
         }
 
         .certificate-card h4 {
             color: var(--accent-color);
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 8px rgba(153, 51, 255, 0.5);
         }
 
         .certificate-card p {
@@ -567,6 +591,9 @@
             .skill-item.no-icon h4 {
                 font-size: 1.1rem;
             }
+            .education-item .university-logo {
+                height: 30px; /* Smaller logo on mobile */
+            }
         }
 
         @media (max-width: 480px) {
@@ -617,7 +644,11 @@
     <section id="education">
         <h2 class="section-title">Education</h2>
         <div class="education-item">
-            <h3>University of Hail | Saudi Arabia</h3>
+            <h3>
+                University of Hail
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Hail_University_Logo.svg/1200px-Hail_University_Logo.svg.png" alt="University of Hail Logo" class="university-logo">
+                | Saudi Arabia
+            </h3>
             <p>Bachelor's Degree in Software Engineering | Expected 2025.</p>
             <ul>
                 <li>Gain a thorough understanding of computer hardware and software systems.</li>
