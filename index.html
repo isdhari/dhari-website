@@ -4,42 +4,89 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dhari Almkhidsh</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 100%);
+      color: white;
+      overflow-x: hidden;
+    }
+    header {
+    p {
+      font-size: 1.2rem;
+      padding: 2rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+    }
+    p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 1rem auto;
+    }
+    .cv-button {
+      background-color: #1e90ff;
+      padding: 0.7rem 1.5rem;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+    .cv-button:hover {
+      background-color: #0a74da;
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem auto;
+      max-width: 900px;
+    }
+    .skills img {
+      width: 80px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem;
+    }
+    .socials a {
+      color: #1e90ff;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+  </style>
 </head>
 <body>
-  <div class="container fade-in">
-    <header>
-      <h1>Dhari Almkhidsh</h1>
-      <p class="title">Software Engineer</p>
-      <a class="email" href="mailto:isdhari.abdullah@gmail.com">isdhari.abdullah@gmail.com</a>
-    </header>
+  <header>
+    <h1>Dhari Almkhidsh</h1>
+    <p>Software Engineering Student at University of Hail. Passionate about coding, solving problems, and building web experiences. Here are some of my key skills.</p>
+    <a href="Dhari-Almkhidsh-CV.pdf" class="cv-button" target="_blank">View My CV</a>
+  </header>
 
-    <section>
-      <h2>About Me</h2>
-      <p>
-        I am a passionate Software Engineer with experience in designing, building, and deploying modern web applications using the latest technologies. I enjoy turning ideas into real, functional software.
-      </p>
-    </section>
+  <section class="skills">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+  </section>
 
-    <section>
-      <h2>Skills</h2>
-      <ul>
-        <li>Frontend Development (HTML, CSS, JavaScript)</li>
-        <li>Software Architecture & Design</li>
-        <li>Database Management</li>
-        <li>React & Node.js Applications</li>
-      </ul>
-    </section>
-
-    <section class="cv-section">
-      <a href="Dhari-Almkhidsh-CV.pdf" class="cv-button" target="_blank">View My CV</a>
-    </section>
-
-    <footer>
-      &copy; 2025 Dhari Almkhidsh
-      Commit Add CV PDF
-file:///C:/Users/dari/Downloads/Cv-Dhari%20Abdullah%20%20(1).pdf
-    </footer>
-  </div>
+  <section class="socials">
+    <a href="https://twitter.com/hhpptts" target="_blank">Twitter</a>
+    <a href="https://instagram.com/hhpttts" target="_blank">Instagram</a>
+    <a href="https://snapchat.com/add/isdhari" target="_blank">Snapchat</a>
+  </section>
 </body>
 </html>
