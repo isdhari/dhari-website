@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>نجوم تدور</title>
+  <title>النجوم المتحركة</title>
   <style>
     body {
       margin: 0;
@@ -10,75 +10,78 @@
       background: black;
     }
 
-    #starfield {
+    canvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
       z-index: -1;
     }
 
     h1 {
       color: white;
-      text-align: center;
-      margin-top: 20%;
       font-family: sans-serif;
+      text-align: center;
+      margin-top: 40vh;
+      font-size: 2rem;
     }
   </style>
 </head>
 <body>
-  <canvas id="starfield"></canvas>
-  <h1>نجوم تدور حولك ✨</h1>
 
-  <script>
-    const canvas = document.getElementById("starfield");
-    const ctx = canvas.getContext("2d");
+<canvas id="starfield"></canvas>
+<h1>سماء مليئة بالنجوم ✨</h1>
 
-    let stars = [];
-    const numStars = 150;
+<script>
+  const canvas = document.getElementById("starfield");
+  const ctx = canvas.getContext("2d");
 
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+  let stars = [];
+  const numStars = 400;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+
+  const centerX = () => canvas.width / 2;
+  const centerY = () => canvas.height / 2;
+
+  for (let i = 0; i < numStars; i++) {
+    const radius = Math.random() * 1.5 + 0.3;
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * Math.min(canvas.width, canvas.height) / 2;
+
+    stars.push({
+      radius: radius,
+      angle: angle,
+      distance: distance,
+      speed: Math.random() * 0.0008 + 0.0002
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+
+    for (let star of stars) {
+      star.angle += star.speed;
+
+      const x = centerX() + Math.cos(star.angle) * star.distance;
+      const y = centerY() + Math.sin(star.angle) * star.distance;
+
+      ctx.beginPath();
+      ctx.arc(x, y, star.radius, 0, 2 * Math.PI);
+      ctx.fill();
     }
 
-    window.addEventListener("resize", resize);
-    resize();
+    requestAnimationFrame(animate);
+  }
 
-    for (let i = 0; i < numStars; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.5 + 0.5,
-        angle: Math.random() * 2 * Math.PI,
-        distance: Math.random() * 100 + 50,
-        speed: Math.random() * 0.001 + 0.0005
-      });
-    }
+  animate();
+</script>
 
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "white";
-
-      stars.forEach(star => {
-        star.angle += star.speed;
-
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
-
-        const x = centerX + Math.cos(star.angle) * star.distance;
-        const y = centerY + Math.sin(star.angle) * star.distance;
-
-        ctx.beginPath();
-        ctx.arc(x, y, star.radius, 0, 2 * Math.PI);
-        ctx.fill();
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
 </body>
 </html>
