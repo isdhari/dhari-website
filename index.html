@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dhari Almkhidsh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Tajawal', sans-serif;
       background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 100%);
       color: white;
       overflow-x: hidden;
@@ -17,10 +18,11 @@
       padding: 4rem 2rem 2rem;
       text-align: center;
     }
+    h1, h2, p, a, span {
+      text-shadow: 0 0 8px #ffffffcc;
+    }
     h1 {
       font-size: 4rem;
-      color: #fff;
-      text-shadow: 0 0 15px #ffffffaa;
       margin-bottom: 1rem;
     }
     p.description {
@@ -35,16 +37,16 @@
       right: 20px;
     }
     .cv-top a {
-      color: #1e90ff;
+      color: #fff;
       text-decoration: none;
       font-weight: bold;
-      border: 1px solid #1e90ff;
+      border: 1px solid #fff;
       padding: 0.5rem 1rem;
       border-radius: 8px;
       transition: background 0.3s;
     }
     .cv-top a:hover {
-      background: #1e90ff;
+      background: #fff;
       color: #000;
     }
     section {
@@ -54,7 +56,6 @@
     .section-title {
       font-size: 2rem;
       margin-bottom: 2rem;
-      text-shadow: 0 0 10px #ffffff33;
     }
     .languages {
       display: flex;
@@ -68,14 +69,14 @@
     .languages img {
       width: 50px;
       height: 50px;
-      animation: slide 10s linear infinite;
+      animation: slide 25s linear infinite;
       scroll-snap-align: center;
     }
     @keyframes slide {
       0% { transform: translateX(100vw); }
       100% { transform: translateX(-100vw); }
     }
-    .skills p {
+    .skills p, .courses ul {
       font-size: 1.1rem;
       max-width: 700px;
       margin: 0 auto;
@@ -92,6 +93,19 @@
       color: #1e90ff;
       text-decoration: none;
       font-size: 1.2rem;
+    }
+    .courses ul {
+      list-style: none;
+      padding: 0;
+      animation: dropIn 2s ease-out forwards;
+      opacity: 0;
+    }
+    .courses ul li {
+      margin: 0.5rem 0;
+    }
+    @keyframes dropIn {
+      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(-20px); }
     }
   </style>
 </head>
@@ -121,6 +135,13 @@
   <section class="skills">
     <h2 class="section-title">Skills</h2>
     <p>I have a strong foundation in computer science and problem solving. My skills include debugging, clean code writing, API integration, responsive web design, and working with version control systems like Git. I'm constantly improving my ability to learn quickly and adapt to new technologies.</p>
+  </section>
+
+  <section class="courses">
+    <h2 class="section-title">Courses</h2>
+    <ul>
+      <li>1 - Back-End Development</li>
+    </ul>
   </section>
 
   <section class="socials">
