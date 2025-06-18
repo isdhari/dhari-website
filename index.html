@@ -376,8 +376,8 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1); /* White border */
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* White shadow */
-            display: flex; /* Make it a flex container for image and text */
-            flex-direction: column; /* Stack image and text vertically */
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
@@ -386,14 +386,8 @@
             background: rgba(255, 255, 255, 0.08); /* Lighter on hover */
         }
 
-        .project-card img { /* New style for project images */
-            max-width: 100%;
-            height: 200px; /* Fixed height for consistency */
-            object-fit: cover; /* Cover the area, crop if needed */
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
-        }
+        /* Removed project-card img styles as images are gone */
+        /* .project-card img { ... } */
 
         .project-card h3 {
             color: var(--accent-color); /* White */
@@ -412,6 +406,7 @@
 
         .project-card .project-links {
             margin-top: auto; /* Push links to the bottom */
+            padding-top: 1rem; /* Space above links */
         }
 
         .project-card .project-links a {
@@ -429,6 +424,30 @@
             color: var(--text-color-light); /* Lighter on hover */
             transform: translateY(-2px);
             text-shadow: 0 0 8px var(--accent-color); /* White glow */
+        }
+
+        /* --- Project Themes Styling (New) --- */
+        .project-themes {
+            margin-bottom: 1.5rem; /* Space below themes */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .project-themes span {
+            display: inline-block;
+            background-color: var(--accent-color); /* White background for themes */
+            color: var(--primary-bg); /* Dark navy text on themes */
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-shadow: none; /* No text shadow for theme tags */
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4); /* Subtle white shadow */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .project-themes span:hover {
+            background-color: var(--text-color-light); /* Slightly off-white on hover */
+            transform: translateY(-2px);
         }
 
         /* --- Certificates Section --- */
@@ -596,8 +615,10 @@
             .skill-item {
                 margin-right: 2rem;
             }
-            .project-card img {
-                height: 150px; /* Adjust project image height for mobile */
+            /* Project themes sizing for smaller screens */
+            .project-themes span {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
             }
         }
 
@@ -639,7 +660,7 @@
         <h1>Dhari Almkhidsh</h1>
         <p class="description">I'm a software engineering student at the University of Hail (2020 – 2025). I enjoy turning ideas into real-world software and exploring the latest tech trends. Welcome to my personal space on the web!</p>
         <div class="cv-link" id="cv">
-            <a href="https://drive.google.com/uc?export=download&id=15AmxDlBYh5E915s2SoO4GqdxYQAXZIdQ" target="_blank" download>Download My CV (PDF)</a>
+            <a href="https://drive.google.com/file/d/1VcjqTiqrc6wXmOTFr0WkMwJ0i0Kx8wTG/view?usp=drive_link" target="_blank" download>Download My CV (PDF)</a>
         </div>
     </header>
 
@@ -736,8 +757,12 @@
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <img src="https://via.placeholder.com/400x200?text=Project+Image+1" alt="Project 1 Image" />
                 <h3>Personal Portfolio Website</h3>
+                <div class="project-themes">
+                    <span>Web Development</span>
+                    <span>Frontend</span>
+                    <span>HTML/CSS/JS</span>
+                </div>
                 <p>Designed and developed a responsive personal portfolio website using HTML, CSS, and JavaScript to showcase skills and projects.</p>
                 <div class="project-links">
                     <a href="#" target="_blank">View Project</a>
@@ -745,8 +770,13 @@
                 </div>
             </div>
             <div class="project-card">
-                <img src="https://via.placeholder.com/400x200?text=Project+Image+2" alt="Project 2 Image" />
-                <h3>Task Management API (Go/FastAPI)</h3>
+                <h3>Task Management API</h3>
+                <div class="project-themes">
+                    <span>Backend</span>
+                    <span>API</span>
+                    <span>Go</span>
+                    <span>FastAPI</span>
+                </div>
                 <p>Built a robust backend API for task management with user authentication, data validation, and database integration using Go and FastAPI.</p>
                 <div class="project-links">
                     <a href="#" target="_blank">View Project</a>
@@ -754,8 +784,12 @@
                 </div>
             </div>
             <div class="project-card">
-                <img src="https://via.placeholder.com/400x200?text=Project+Image+3" alt="Project 3 Image" />
-                <h3>E-commerce Frontend (React.js)</h3>
+                <h3>E-commerce Frontend</h3>
+                <div class="project-themes">
+                    <span>Frontend</span>
+                    <span>E-commerce</span>
+                    <span>React.js</span>
+                </div>
                 <p>Developed a dynamic and interactive e-commerce frontend application, focusing on state management, component reusability, and user experience.</p>
                 <div class="project-links">
                     <a href="#" target="_blank">View Project</a>
