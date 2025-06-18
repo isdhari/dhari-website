@@ -9,12 +9,12 @@
     <style>
         /* --- CSS Variables for Easy Customization --- */
         :root {
-            --primary-bg: #000;
-            --secondary-bg: #0d0d1a;
+            --primary-bg: #0a0a20; /* Dark Navy Blue */
+            --secondary-bg: #151530; /* Slightly lighter Navy for cards */
             --text-color-light: #e0e0e0;
             --text-color-dark: #ccc;
-            --accent-color: #9933ff; /* Neon Purple */
-            --accent-glow: #9933ffaa;
+            --accent-color: #ffffff; /* White */
+            --accent-glow: #ffffff88; /* White glow with transparency */
             --shadow-intensity: 0.15;
             --header-height: 80px; /* Height of the fixed header */
         }
@@ -49,7 +49,7 @@
             to { background-position: 100% 100%; }
         }
 
-        /* --- Earth Background Overlay (New) --- */
+        /* --- Earth Background Overlay --- */
         body::after {
             content: "";
             position: fixed;
@@ -57,7 +57,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* Placeholder for Earth image. Replace with a high-res, dark earth image if available. */
             background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Full_Globe_Map.png/1280px-Full_Globe_Map.png') no-repeat center center fixed;
             background-size: cover;
             opacity: 0.03; /* Very subtle */
@@ -67,7 +66,7 @@
 
         /* --- Global Text Styles --- */
         h1, h2, h3, p, a, span, li {
-            text-shadow: 0 0 10px var(--accent-glow), 0 0 20px rgba(153, 51, 255, 0.3); /* Enhanced neon glow with purple */
+            text-shadow: 0 0 10px var(--accent-glow), 0 0 20px rgba(255, 255, 255, 0.3); /* Enhanced neon glow with white */
         }
 
         /* --- Navigation Bar --- */
@@ -83,7 +82,7 @@
             align-items: center;
             padding: 0 2rem;
             height: var(--header-height);
-            box-shadow: 0 2px 10px rgba(153, 51, 255, var(--shadow-intensity));
+            box-shadow: 0 2px 10px rgba(255, 255, 255, var(--shadow-intensity)); /* White shadow */
         }
 
         .navbar ul {
@@ -128,10 +127,10 @@
 
         /* --- Header Section --- */
         header {
-            padding: 8rem 2rem 4rem; /* More vertical padding */
+            padding: 8rem 2rem 4rem;
             text-align: center;
             position: relative;
-            min-height: calc(100vh - var(--header-height)); /* Ensure header takes full viewport height minus nav */
+            min-height: calc(100vh - var(--header-height));
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -139,14 +138,14 @@
         }
 
         h1 {
-            font-size: 4.5rem; /* Larger, more impactful */
+            font-size: 4.5rem;
             margin-bottom: 1.5rem;
             color: white;
             letter-spacing: 2px;
         }
 
         p.description {
-            font-size: 1.5rem; /* Larger and more readable */
+            font-size: 1.5rem;
             max-width: 900px;
             margin: 0 auto 2.5rem;
             color: var(--text-color-dark);
@@ -154,16 +153,16 @@
         }
 
         .cv-link a {
-            display: inline-block; /* Make it a block for padding/margin */
+            display: inline-block;
             color: var(--accent-color);
             text-decoration: none;
             font-weight: bold;
             border: 2px solid var(--accent-color);
             padding: 0.8rem 1.8rem;
-            border-radius: 50px; /* Pill shape */
+            border-radius: 50px;
             transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
             font-size: 1.2rem;
-            box-shadow: 0 0 15px rgba(153, 51, 255, 0.4);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); /* White shadow */
         }
 
         .cv-link a:hover {
@@ -175,14 +174,14 @@
 
         /* --- General Section Styling --- */
         section {
-            padding: 6rem 2rem; /* Consistent padding */
+            padding: 6rem 2rem;
             text-align: center;
-            margin-bottom: 0; /* No margin between sections, padding handles spacing */
+            margin-bottom: 0;
             position: relative;
         }
 
         .section-title {
-            font-size: 3rem; /* Prominent titles */
+            font-size: 3rem;
             margin-bottom: 3.5rem;
             color: white;
             position: relative;
@@ -210,13 +209,13 @@
             color: var(--text-color-dark);
             line-height: 1.8;
             font-weight: 300;
-            text-align: justify; /* Justify text for a cleaner look */
-            text-shadow: none; /* Remove text-shadow for better readability in paragraphs */
+            text-align: justify;
+            text-shadow: none;
         }
         .about p br {
             content: '';
             display: block;
-            margin-bottom: 1em; /* Add space between paragraphs */
+            margin-bottom: 1em;
         }
 
         /* --- Education Section --- */
@@ -224,29 +223,29 @@
             max-width: 900px;
             margin: 0 auto 2.5rem;
             text-align: left;
-            background: rgba(153, 51, 255, 0.05); /* Purple tint */
+            background: var(--secondary-bg); /* Use secondary background */
             border-radius: 15px;
             padding: 2rem;
-            border: 1px solid rgba(153, 51, 255, 0.1);
-            box-shadow: 0 0 15px rgba(153, 51, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* White border */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* White shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .education-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(153, 51, 255, 0.2);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); /* White shadow on hover */
         }
         .education-item h3 {
             color: var(--accent-color);
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
-            display: flex; /* Allow content and image on same line */
-            align-items: center; /* Vertically align them */
-            gap: 10px; /* Space between text and logo */
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .education-item .university-logo { /* New style for logo */
-            height: 40px; /* Adjust size as needed */
+        .education-item .university-logo {
+            height: 40px;
             width: auto;
-            filter: drop-shadow(0 0 8px rgba(153, 51, 255, 0.6)); /* Glow effect for logo */
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)); /* White glow for logo */
         }
         .education-item p {
             font-size: 1.1rem;
@@ -267,88 +266,80 @@
             text-shadow: none;
         }
 
-
-        /* --- Languages Section (Slider) --- */
-        .languages {
-            display: flex;
-            overflow: hidden; /* Hide scrollbar */
-            gap: 3rem; /* Spacing between images */
-            padding: 1rem 0;
-            justify-content: center; /* Center items when not enough to scroll */
-            position: relative;
-            width: 100%; /* Ensure it takes full width */
-            box-sizing: border-box;
-        }
-
-        .language-slider-container {
-            display: flex;
-            width: fit-content; /* Allow content to dictate width */
-            animation: slideLanguages 40s linear infinite; /* Slower, continuous slide */
-        }
-
-        .languages img {
-            width: 60px; /* Slightly larger icons */
-            height: 60px;
-            flex-shrink: 0; /* Prevent shrinking */
-            filter: grayscale(80%); /* Subtle desaturation */
-            transition: filter 0.3s ease, transform 0.3s ease;
-        }
-
-        .languages img:hover {
-            filter: grayscale(0%); /* Full color on hover */
-            transform: scale(1.1);
-        }
-
-        /* Create duplicated content for seamless loop */
-        .languages .language-slider-container:nth-child(2) {
-            animation-delay: -20s; /* Start second copy halfway through animation */
-        }
-
-        @keyframes slideLanguages {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); } /* Half of total width to loop seamlessly */
-        }
-
-        /* --- Skills Section --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted for smaller icon-based items */
-            gap: 2.5rem;
-            max-width: 1000px;
+        /* --- Skills Section (Two-row animated slider) --- */
+        .skills-container { /* New wrapper for the two skill rows */
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem;
+            overflow: hidden; /* Hide scrollbars for the animation */
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .skill-row {
+            display: flex;
+            white-space: nowrap; /* Prevent items from wrapping */
+            gap: 3rem; /* Space between skill items */
+            padding: 1rem 0;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .skill-row.top {
+            animation-name: scrollRightToLeft;
+            animation-duration: 60s; /* Slower */
+        }
+
+        .skill-row.bottom {
+            animation-name: scrollLeftToRight;
+            animation-duration: 60s; /* Slower */
+            animation-delay: -30s; /* Start bottom row halfway through */
+        }
+
+        @keyframes scrollRightToLeft {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes scrollLeftToRight {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0%); }
         }
 
         .skill-item {
+            flex-shrink: 0; /* Prevent shrinking during scroll */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: rgba(153, 51, 255, 0.05); /* Purple tint */
+            background: var(--secondary-bg); /* Use secondary background */
             border-radius: 15px;
             padding: 1.5rem 1rem;
-            border: 1px solid rgba(153, 51, 255, 0.1);
-            box-shadow: 0 0 15px rgba(153, 51, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* White border */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* White shadow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
-            min-height: 150px; /* Ensure consistent height */
+            min-width: 150px; /* Ensure consistent width */
+            margin-right: 3rem; /* Space between items within a row */
+        }
+        .skill-item:last-child {
+            margin-right: 0; /* No margin on the last item in the row */
         }
         .skill-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(153, 51, 255, 0.2);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); /* White shadow on hover */
         }
 
-        .skill-item i { /* For Devicon icons */
-            font-size: 3.5rem; /* Large icon size */
-            color: var(--accent-color);
+        .skill-item i {
+            font-size: 3.5rem;
+            color: var(--accent-color); /* White */
             margin-bottom: 0.8rem;
-            text-shadow: 0 0 10px rgba(153, 51, 255, 0.6);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* White glow */
         }
-        .skill-item img { /* For any potential image icons */
+        .skill-item img {
             width: 60px;
             height: 60px;
             margin-bottom: 0.8rem;
-            filter: drop-shadow(0 0 10px rgba(153, 51, 255, 0.6));
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6)); /* White glow */
         }
 
         .skill-item h4 {
@@ -356,12 +347,11 @@
             font-size: 1.1rem;
             font-weight: 600;
             margin: 0;
-            text-shadow: 0 0 5px rgba(153, 51, 255, 0.3);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* White shadow */
         }
 
-        /* Specific styles for soft skills/languages if they don't have icons */
         .skill-item.no-icon {
-            padding-top: 2.5rem; /* Adjust padding if no icon */
+            padding-top: 2.5rem;
         }
         .skill-item.no-icon h4 {
             font-size: 1.3rem;
@@ -379,26 +369,37 @@
         }
 
         .project-card {
-            background: rgba(153, 51, 255, 0.05); /* Purple tint */
+            background: var(--secondary-bg); /* Use secondary background */
             border-radius: 15px;
             padding: 2rem;
             text-align: left;
             transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            border: 1px solid rgba(153, 51, 255, 0.1);
-            box-shadow: 0 0 15px rgba(153, 51, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* White border */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* White shadow */
+            display: flex; /* Make it a flex container for image and text */
+            flex-direction: column; /* Stack image and text vertically */
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 30px var(--accent-color);
-            background: rgba(153, 51, 255, 0.08);
+            box-shadow: 0 0 30px var(--accent-color); /* White shadow on hover */
+            background: rgba(255, 255, 255, 0.08); /* Lighter on hover */
+        }
+
+        .project-card img { /* New style for project images */
+            max-width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Cover the area, crop if needed */
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
         }
 
         .project-card h3 {
-            color: var(--accent-color);
+            color: var(--accent-color); /* White */
             font-size: 1.7rem;
             margin-bottom: 0.8rem;
-            text-shadow: 0 0 10px rgba(153, 51, 255, 0.6);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* White glow */
         }
 
         .project-card p {
@@ -406,27 +407,28 @@
             font-size: 1rem;
             margin-bottom: 1.5rem;
             text-shadow: none;
+            flex-grow: 1; /* Allow paragraph to take up available space */
         }
 
         .project-card .project-links {
-            margin-top: 1.5rem;
+            margin-top: auto; /* Push links to the bottom */
         }
 
         .project-card .project-links a {
             display: inline-block;
-            color: var(--accent-color);
+            color: var(--accent-color); /* White */
             text-decoration: none;
             margin-right: 1.5rem;
             font-weight: bold;
             transition: color 0.3s ease, transform 0.3s ease;
             font-size: 1rem;
-            text-shadow: none; /* Remove text shadow for better link clarity */
+            text-shadow: none;
         }
 
         .project-card .project-links a:hover {
-            color: white;
+            color: var(--text-color-light); /* Lighter on hover */
             transform: translateY(-2px);
-            text-shadow: 0 0 8px var(--accent-color);
+            text-shadow: 0 0 8px var(--accent-color); /* White glow */
         }
 
         /* --- Certificates Section --- */
@@ -440,34 +442,28 @@
         }
 
         .certificate-card {
-            background: rgba(153, 51, 255, 0.05); /* Purple tint */
+            background: var(--secondary-bg); /* Use secondary background */
             border-radius: 15px;
-            padding: 1rem;
+            padding: 1.5rem; /* Adjusted padding without image */
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(153, 51, 255, 0.1);
-            box-shadow: 0 0 15px rgba(153, 51, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* White border */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* White shadow */
         }
 
         .certificate-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 30px var(--accent-color);
+            box-shadow: 0 0 30px var(--accent-color); /* White shadow on hover */
         }
 
-        .certificate-card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            display: block; /* Remove extra space below image */
-            margin: 0 auto 1rem; /* Center and add margin below */
-            border: 1px solid rgba(153, 51, 255, 0.2);
-        }
+        /* Removed img specific styles for certificates as images are gone */
+        /* .certificate-card img { ... } */
 
         .certificate-card h4 {
-            color: var(--accent-color);
+            color: var(--accent-color); /* White */
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 8px rgba(153, 51, 255, 0.5);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* White glow */
         }
 
         .certificate-card p {
@@ -487,14 +483,15 @@
         }
 
         .socials a img {
-            width: 48px; /* Larger icons */
+            width: 48px;
             height: 48px;
+            /* Keep original filter but modify hover */
             filter: grayscale(100%) brightness(0.8) drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); /* White grayscale with subtle shadow */
             transition: filter 0.3s ease, transform 0.3s ease;
         }
 
         .socials a:hover img {
-            filter: grayscale(0%) brightness(1) drop-shadow(0 0 15px var(--accent-color)); /* Full color with strong glow */
+            filter: grayscale(0%) brightness(1) drop-shadow(0 0 15px var(--accent-color)); /* Full color with strong white glow */
             transform: scale(1.1);
         }
 
@@ -504,7 +501,7 @@
             padding: 2.5rem 1rem;
             font-size: 1rem;
             color: #888;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.05); /* White border */
             margin-top: 4rem;
         }
 
@@ -525,9 +522,15 @@
             .section-title {
                 font-size: 2.5rem;
             }
-            .projects-grid, .certificates-grid, .skills-grid {
+            .projects-grid, .certificates-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 2rem;
+            }
+            /* Adjust skill item width for smaller screens but keep consistent */
+            .skill-item {
+                min-width: 130px;
+                padding: 1rem 0.8rem;
+                margin-right: 2rem;
             }
         }
 
@@ -557,15 +560,11 @@
             section {
                 padding: 4rem 1rem;
             }
-            .languages img {
-                width: 50px;
-                height: 50px;
-            }
             .about p, .project-card p, .certificate-card p, .education-item p {
                 font-size: 1rem;
-                text-align: left; /* Keep left align for better mobile readability */
+                text-align: left;
             }
-            .project-card, .certificate-card, .education-item, .skill-item {
+            .project-card, .certificate-card, .education-item {
                 padding: 1.5rem;
             }
             .project-card h3, .education-item h3 {
@@ -574,10 +573,6 @@
             .socials a img {
                 width: 40px;
                 height: 40px;
-            }
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Adjust for smaller screens */
-                gap: 1.5rem;
             }
             .skill-item i {
                 font-size: 3rem;
@@ -592,7 +587,17 @@
                 font-size: 1.1rem;
             }
             .education-item .university-logo {
-                height: 30px; /* Smaller logo on mobile */
+                height: 30px;
+            }
+            .skill-row {
+                gap: 2rem;
+                padding: 0.5rem 0;
+            }
+            .skill-item {
+                margin-right: 2rem;
+            }
+            .project-card img {
+                height: 150px; /* Adjust project image height for mobile */
             }
         }
 
@@ -606,6 +611,13 @@
             .section-title {
                 font-size: 1.8rem;
             }
+            .skill-item {
+                min-width: 100px; /* Smaller skill items on very small screens */
+                padding: 0.8rem 0.5rem;
+            }
+            .skill-item i {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -615,7 +627,6 @@
         <ul>
             <li><a href="#about">About Me</a></li>
             <li><a href="#education">Education</a></li>
-            <li><a href="#languages">Languages</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#certificates">Certificates</a></li>
@@ -628,7 +639,7 @@
         <h1>Dhari Almkhidsh</h1>
         <p class="description">I'm a software engineering student at the University of Hail (2020 – 2025). I enjoy turning ideas into real-world software and exploring the latest tech trends. Welcome to my personal space on the web!</p>
         <div class="cv-link" id="cv">
-            <a href="https://drive.google.com/uc?export=download&id=YOUR_CV_FILE_ID_HERE" target="_blank" download>Download My CV (PDF)</a>
+            <a href="https://drive.google.com/uc?export=download&id=15AmxDlBYh5E915s2SoO4GqdxYQAXZIdQ" target="_blank" download>Download My CV (PDF)</a>
         </div>
     </header>
 
@@ -658,133 +669,65 @@
         </div>
     </section>
 
-    <section id="languages">
-        <h2 class="section-title">My Languages & Technologies</h2>
-        <div class="languages">
-            <div class="language-slider-container">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Go" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-            </div>
-            <div class="language-slider-container">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Go" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-            </div>
-        </div>
-    </section>
-
     <section class="skills" id="skills">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-item">
-                <i class="devicon-python-plain colored"></i>
-                <h4>Python</h4>
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="skills-container">
+            <div class="skill-row top">
+                <div class="skill-item"><i class="devicon-python-plain"></i><h4>Python</h4></div>
+                <div class="skill-item"><i class="devicon-sqldeveloper-plain"></i><h4>SQL</h4></div>
+                <div class="skill-item"><i class="devicon-jupyter-plain"></i><h4>Data Analysis</h4></div>
+                <div class="skill-item"><i class="devicon-r-plain"></i><h4>Data Visualization</h4></div>
+                <div class="skill-item"><i class="devicon-html5-plain"></i><h4>HTML5</h4></div>
+                <div class="skill-item"><i class="devicon-css3-plain"></i><h4>CSS3</h4></div>
+                <div class="skill-item"><i class="devicon-javascript-plain"></i><h4>JavaScript</h4></div>
+                <div class="skill-item"><i class="devicon-java-plain"></i><h4>Java</h4></div>
+                <div class="skill-item"><i class="devicon-go-plain"></i><h4>Go</h4></div>
+                <div class="skill-item"><i class="devicon-react-original"></i><h4>React.js</h4></div>
+                <div class="skill-item"><i class="devicon-postgresql-plain"></i><h4>PostgreSQL</h4></div>
+                <div class="skill-item"><i class="devicon-mongodb-plain"></i><h4>MongoDB</h4></div>
+                <div class="skill-item"><i class="devicon-python-plain"></i><h4>Python</h4></div>
+                <div class="skill-item"><i class="devicon-sqldeveloper-plain"></i><h4>SQL</h4></div>
+                <div class="skill-item"><i class="devicon-jupyter-plain"></i><h4>Data Analysis</h4></div>
+                <div class="skill-item"><i class="devicon-r-plain"></i><h4>Data Visualization</h4></div>
+                <div class="skill-item"><i class="devicon-html5-plain"></i><h4>HTML5</h4></div>
+                <div class="skill-item"><i class="devicon-css3-plain"></i><h4>CSS3</h4></div>
+                <div class="skill-item"><i class="devicon-javascript-plain"></i><h4>JavaScript</h4></div>
+                <div class="skill-item"><i class="devicon-java-plain"></i><h4>Java</h4></div>
+                <div class="skill-item"><i class="devicon-go-plain"></i><h4>Go</h4></div>
+                <div class="skill-item"><i class="devicon-react-original"></i><h4>React.js</h4></div>
+                <div class="skill-item"><i class="devicon-postgresql-plain"></i><h4>PostgreSQL</h4></div>
+                <div class="skill-item"><i class="devicon-mongodb-plain"></i><h4>MongoDB</h4></div>
             </div>
-            <div class="skill-item">
-                <i class="devicon-sqldeveloper-plain colored"></i>
-                <h4>SQL</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-jupyter-plain colored"></i> <h4>Data Analysis</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-r-plain colored"></i> <h4>Data Visualization</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-html5-plain colored"></i>
-                <h4>HTML5</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-css3-plain colored"></i>
-                <h4>CSS3</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-javascript-plain colored"></i>
-                <h4>JavaScript</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-java-plain colored"></i>
-                <h4>Java</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-go-plain colored"></i>
-                <h4>Go</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-react-original colored"></i>
-                <h4>React.js</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-postgresql-plain colored"></i>
-                <h4>PostgreSQL</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-mongodb-plain colored"></i>
-                <h4>MongoDB</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-docker-plain colored"></i>
-                <h4>Docker</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-git-plain colored"></i>
-                <h4>Git</h4>
-            </div>
-            <div class="skill-item">
-                <i class="devicon-github-original colored"></i>
-                <h4>GitHub</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>Leadership</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>Problem-Solving</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>Critical Thinking</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>Communication</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>Teamwork</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>Time Management</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>Adaptability</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>Attention to Detail</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>Self-Motivation</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>Arabic</h4>
-            </div>
-            <div class="skill-item no-icon">
-                <h4>English</h4>
+
+            <div class="skill-row bottom">
+                <div class="skill-item"><i class="devicon-docker-plain"></i><h4>Docker</h4></div>
+                <div class="skill-item"><i class="devicon-git-plain"></i><h4>Git</h4></div>
+                <div class="skill-item"><i class="devicon-github-original"></i><h4>GitHub</h4></div>
+                <div class="skill-item no-icon"><h4>Leadership</h4></div>
+                <div class="skill-item no-icon"><h4>Problem-Solving</h4></div>
+                <div class="skill-item no-icon"><h4>Critical Thinking</h4></div>
+                <div class="skill-item no-icon"><h4>Communication</h4></div>
+                <div class="skill-item no-icon"><h4>Teamwork</h4></div>
+                <div class="skill-item no-icon"><h4>Time Management</h4></div>
+                <div class="skill-item no-icon"><h4>Adaptability</h4></div>
+                <div class="skill-item no-icon"><h4>Attention to Detail</h4></div>
+                <div class="skill-item no-icon"><h4>Self-Motivation</h4></div>
+                <div class="skill-item no-icon"><h4>Arabic</h4></div>
+                <div class="skill-item no-icon"><h4>English</h4></div>
+                <div class="skill-item"><i class="devicon-docker-plain"></i><h4>Docker</h4></div>
+                <div class="skill-item"><i class="devicon-git-plain"></i><h4>Git</h4></div>
+                <div class="skill-item"><i class="devicon-github-original"></i><h4>GitHub</h4></div>
+                <div class="skill-item no-icon"><h4>Leadership</h4></div>
+                <div class="skill-item no-icon"><h4>Problem-Solving</h4></div>
+                <div class="skill-item no-icon"><h4>Critical Thinking</h4></div>
+                <div class="skill-item no-icon"><h4>Communication</h4></div>
+                <div class="skill-item no-icon"><h4>Teamwork</h4></div>
+                <div class="skill-item no-icon"><h4>Time Management</h4></div>
+                <div class="skill-item no-icon"><h4>Adaptability</h4></div>
+                <div class="skill-item no-icon"><h4>Attention to Detail</h4></div>
+                <div class="skill-item no-icon"><h4>Self-Motivation</h4></div>
+                <div class="skill-item no-icon"><h4>Arabic</h4></div>
+                <div class="skill-item no-icon"><h4>English</h4></div>
             </div>
         </div>
     </section>
@@ -793,6 +736,7 @@
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
             <div class="project-card">
+                <img src="https://via.placeholder.com/400x200?text=Project+Image+1" alt="Project 1 Image" />
                 <h3>Personal Portfolio Website</h3>
                 <p>Designed and developed a responsive personal portfolio website using HTML, CSS, and JavaScript to showcase skills and projects.</p>
                 <div class="project-links">
@@ -801,6 +745,7 @@
                 </div>
             </div>
             <div class="project-card">
+                <img src="https://via.placeholder.com/400x200?text=Project+Image+2" alt="Project 2 Image" />
                 <h3>Task Management API (Go/FastAPI)</h3>
                 <p>Built a robust backend API for task management with user authentication, data validation, and database integration using Go and FastAPI.</p>
                 <div class="project-links">
@@ -809,6 +754,7 @@
                 </div>
             </div>
             <div class="project-card">
+                <img src="https://via.placeholder.com/400x200?text=Project+Image+3" alt="Project 3 Image" />
                 <h3>E-commerce Frontend (React.js)</h3>
                 <p>Developed a dynamic and interactive e-commerce frontend application, focusing on state management, component reusability, and user experience.</p>
                 <div class="project-links">
@@ -823,58 +769,34 @@
         <h2 class="section-title">My Certificates</h2>
         <div class="certificates-grid">
             <div class="certificate-card">
-                <a href="https://drive.google.com/uc?export=view&id=YOUR_BACKEND_CERT_FILE_ID_HERE" target="_blank">
-                    <img src="https://drive.google.com/uc?export=view&id=YOUR_BACKEND_CERT_FILE_ID_HERE" alt="Back End Development Certificate" />
-                </a>
                 <h4>Back End Development</h4>
                 <p>Ministry of Communications and Information Technology, 12 Hours, Sep 3-5, 2024</p>
             </div>
             <div class="certificate-card">
-                <a href="https://drive.google.com/uc?export=view&id=YOUR_CPP_CERT_FILE_ID_HERE" target="_blank">
-                    <img src="https://drive.google.com/uc?export=view&id=YOUR_CPP_CERT_FILE_ID_HERE" alt="C++ Programming Language Certificate" />
-                </a>
                 <h4>C++ Programming Language</h4>
                 <p>Ministry of Communications and Information Technology, 20 Hours, May 5-9, 2024</p>
             </div>
             <div class="certificate-card">
-                <a href="https://drive.google.com/uc?export=view&id=YOUR_EDA_CERT_FILE_ID_HERE" target="_blank">
-                    <img src="https://drive.google.com/uc?export=view&id=YOUR_EDA_CERT_FILE_ID_HERE" alt="Exploratory Data Analysis Certificate" />
-                </a>
                 <h4>Exploratory Data Analysis (EDA)</h4>
                 <p>Tuwaiq Academy (Sattr Platform), 60 Hours, Issued July 24, 2024</p>
             </div>
             <div class="certificate-card">
-                <a href="https://drive.google.com/uc?export=view&id=YOUR_IOT_CERT_FILE_ID_HERE" target="_blank">
-                    <img src="https://drive.google.com/uc?export=view&id=YOUR_IOT_CERT_FILE_ID_HERE" alt="Introduction to IoT Certificate" />
-                </a>
                 <h4>Introduction to IoT (Beginner)</h4>
                 <p>Tuwaiq Academy (Sattr Platform), 1 Hour, Issued Jan 01, 2025</p>
             </div>
             <div class="certificate-card">
-                <a href="https://drive.google.com/uc?export=view&id=YOUR_FLUTTER101_CERT_FILE_ID_HERE" target="_blank">
-                    <img src="https://drive.google.com/uc?export=view&id=YOUR_FLUTTER101_CERT_FILE_ID_HERE" alt="Flutter 101 Certificate" />
-                </a>
                 <h4>Flutter 101 (Beginner)</h4>
                 <p>Tuwaiq Academy (Sattr Platform), 3 Hours, Issued July 21, 2024</p>
             </div>
             <div class="certificate-card">
-                <a href="https://drive.google.com/uc?export=view&id=YOUR_SWIFT101_CERT_FILE_ID_HERE" target="_blank">
-                    <img src="https://drive.google.com/uc?export=view&id=YOUR_SWIFT101_CERT_FILE_ID_HERE" alt="Swift 101 Certificate" />
-                </a>
                 <h4>Swift 101 (Beginner)</h4>
                 <p>Tuwaiq Academy (Sattr Platform), 4 Hours, Issued July 23, 2024</p>
             </div>
             <div class="certificate-card">
-                <a href="https://drive.google.com/uc?export=view&id=YOUR_SWIFT102_CERT_FILE_ID_HERE" target="_blank">
-                    <img src="https://drive.google.com/uc?export=view&id=YOUR_SWIFT102_CERT_FILE_ID_HERE" alt="Swift 102 Certificate" />
-                </a>
                 <h4>Swift 102 (Intermediate)</h4>
                 <p>Tuwaiq Academy (Sattr Platform), 4 Hours, Issued July 23, 2024</p>
             </div>
             <div class="certificate-card">
-                <a href="https://drive.google.com/uc?export=view&id=YOUR_FLUTTER102_CERT_FILE_ID_HERE" target="_blank">
-                    <img src="https://drive.google.com/uc?export=view&id=YOUR_FLUTTER102_CERT_FILE_ID_HERE" alt="Flutter 102 Certificate" />
-                </a>
                 <h4>Flutter 102 (Intermediate)</h4>
                 <p>Tuwaiq Academy (Sattr Platform), 2 Hours, Issued July 21, 2024</p>
             </div>
@@ -912,8 +834,8 @@
 
             const observerOptions = {
                 root: null,
-                rootMargin: `-${document.querySelector('.navbar').offsetHeight}px 0px 0px 0px`, // Adjust rootMargin by navbar height
-                threshold: 0.3 // Adjust this value to trigger active state when section is more visible
+                rootMargin: `-${document.querySelector('.navbar').offsetHeight}px 0px 0px 0px`,
+                threshold: 0.3
             };
 
             const observer = new IntersectionObserver((entries) => {
@@ -922,7 +844,6 @@
                         navLinks.forEach(link => {
                             link.classList.remove("active");
                         });
-                        // Add active class to the current section's nav link
                         const currentNavLink = document.querySelector(`.navbar a[href="#${entry.target.id}"]`);
                         if (currentNavLink) {
                             currentNavLink.classList.add("active");
@@ -934,7 +855,6 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
-            // Handle initial load for active link
             const firstSection = document.querySelector('section[id]');
             if (firstSection) {
                 const initialNavLink = document.querySelector(`.navbar a[href="#${firstSection.id}"]`);
@@ -943,7 +863,6 @@
                 }
             }
 
-            // Smooth scroll for nav links (optional, browser default is often good)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
