@@ -202,6 +202,47 @@
             margin-bottom: 1em; /* Add space between paragraphs */
         }
 
+        /* --- Education Section --- */
+        .education-item {
+            max-width: 900px;
+            margin: 0 auto 2.5rem;
+            text-align: left;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+        }
+        .education-item h3 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .education-item p {
+            font-size: 1.1rem;
+            color: var(--text-color-dark);
+            margin-bottom: 1rem;
+            text-shadow: none;
+        }
+        .education-item ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-color-dark);
+            text-shadow: none;
+        }
+        .education-item ul li {
+            margin-bottom: 0.5rem;
+            text-shadow: none;
+        }
+
+
         /* --- Languages Section (Slider) --- */
         .languages {
             display: flex;
@@ -244,14 +285,79 @@
         }
 
         /* --- Skills Section --- */
-        .skills p {
-            font-size: 1.2rem;
-            max-width: 900px;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1000px;
             margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .skills-category {
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: left;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skills-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+        }
+
+        .skills-category h3 {
+            color: var(--accent-color);
+            font-size: 1.7rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .skills-category h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            border-radius: 5px;
+        }
+
+        .skills-category ul {
+            list-style: none; /* Remove default bullets */
+            padding: 0;
+            margin: 0;
+        }
+        .skills-category ul li {
+            background: rgba(0, 255, 255, 0.03); /* Lighter background for items */
+            padding: 0.8rem 1rem;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
             color: var(--text-color-dark);
-            font-weight: 300;
-            text-align: justify;
             text-shadow: none;
+            transition: background 0.2s ease;
+        }
+        .skills-category ul li:last-child {
+            margin-bottom: 0;
+        }
+        .skills-category ul li::before {
+            content: '•'; /* Custom bullet */
+            color: var(--accent-color);
+            font-size: 1.5em;
+            line-height: 1;
+            margin-right: 10px;
+            margin-top: -3px; /* Adjust vertical alignment */
+        }
+        .skills-category ul li:hover {
+            background: rgba(0, 255, 255, 0.08);
         }
 
         /* --- Projects Section --- */
@@ -347,6 +453,53 @@
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
         }
 
+        /* --- Certificates Section --- */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .certificate-card {
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px var(--accent-color);
+        }
+
+        .certificate-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block; /* Remove extra space below image */
+            margin: 0 auto 1rem; /* Center and add margin below */
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .certificate-card h4 {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+        }
+
+        .certificate-card p {
+            color: var(--text-color-dark);
+            font-size: 0.9rem;
+            text-shadow: none;
+        }
+
         /* --- Socials Section --- */
         .socials {
             display: flex;
@@ -396,7 +549,7 @@
             .section-title {
                 font-size: 2.5rem;
             }
-            .projects-grid {
+            .projects-grid, .certificates-grid, .skills-grid {
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: 2rem;
             }
@@ -432,14 +585,14 @@
                 width: 50px;
                 height: 50px;
             }
-            .about p, .skills p, .courses ul, .project-card p {
+            .about p, .skills-category ul li, .courses ul li, .project-card p, .certificate-card p, .education-item p {
                 font-size: 1rem;
                 text-align: left; /* Keep left align for better mobile readability */
             }
-            .project-card {
+            .project-card, .certificate-card, .education-item, .skills-category {
                 padding: 1.5rem;
             }
-            .project-card h3 {
+            .project-card h3, .skills-category h3, .education-item h3 {
                 font-size: 1.5rem;
             }
             .socials a img {
@@ -469,10 +622,11 @@
     <nav class="navbar">
         <ul>
             <li><a href="#about">About Me</a></li>
-            <li><a href="#languages">Languages</a></li>
+            <li><a href="#education">Education</a></li> <li><a href="#languages">Languages</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#courses">Courses</a></li>
+            <li><a href="#certificates">Certificates</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#cv">CV</a></li>
         </ul>
@@ -489,17 +643,23 @@
     <section class="about" id="about">
         <h2 class="section-title">About Me</h2>
         <p>
-            I am an enthusiastic software engineer focused on developing clean, scalable, and high-performance web applications.
-            What began as a curiosity about how technology works has evolved into a commitment to solving real-world problems
-            through thoughtful and efficient coding.
-            <br><br>
-            With experience in both front-end and back-end development, I enjoy working across the full stack to deliver seamless
-            user experiences. My core tools include React.js, Go, and FastAPI—technologies I leverage to turn ideas into reality
-            with precision and clarity.
-            <br><br>
-            I am always on a journey to explore new technologies and enhance my skills to stay current in this rapidly evolving field.
-            For me, great software is not just about functionality—it should be reliable, easy to maintain, and built with a clear purpose.
+            I am a highly motivated upcoming graduate with a Bachelor's degree in Software Engineering, possessing a solid foundation in computer systems, software development, and data analysis. 
+            Equipped with knowledge of programming languages, database management, and basic data analytics tools, I have a strong interest in pursuing a career in the data field. 
+            I demonstrate excellent problem-solving, critical thinking, and teamwork abilities. Eager to apply theoretical knowledge in practical settings, I adapt quickly to new technologies and aim to contribute to data-driven decision-making processes. 
         </p>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education-item">
+            <h3>University of Hail | Saudi Arabia</h3>
+            <p>Bachelor's Degree in Software Engineering | Expected 2025 </p>
+            <ul>
+                <li>Gained a thorough understanding of computer hardware and software systems. </li>
+                <li>Developed proficiency in programming and software development. </li>
+                <li>Prepared for practical applications and problem-solving in technology-related fields. </li>
+            </ul>
+        </div>
     </section>
 
     <section id="languages">
@@ -538,7 +698,40 @@
 
     <section class="skills" id="skills">
         <h2 class="section-title">Skills</h2>
-        <p>I have a strong foundation in computer science principles and problem-solving methodologies. My expertise includes **robust debugging**, writing **clean and maintainable code**, seamless **API integration**, and developing **responsive web designs** that adapt across devices. I am proficient with **version control systems like Git** and regularly contribute to open-source projects. My commitment to continuous learning drives me to quickly **adapt to new technologies** and frameworks, ensuring I stay at the forefront of software innovation.</p>
+        <div class="skills-grid">
+            <div class="skills-category">
+                <h3>Technical Skills</h3>
+                <ul>
+                    <li>Data Analysis </li>
+                    <li>Programming Languages (Python) </li>
+                    <li>Database Management (SQL) </li>
+                    <li>Data Visualization (Excel, Power BI, Tableau) </li>
+                    <li>Computer Hardware Knowledge </li>
+                    <li>IT Support and Troubleshooting </li>
+                </ul>
+            </div>
+            <div class="skills-category">
+                <h3>Soft Skills</h3>
+                <ul>
+                    <li>Leadership </li>
+                    <li>Problem-Solving </li>
+                    <li>Critical Thinking </li>
+                    <li>Communication Skills </li>
+                    <li>Teamwork </li>
+                    <li>Time Management </li>
+                    <li>Adaptability </li>
+                    <li>Attention to Detail </li>
+                    <li>Self-Motivation </li>
+                </ul>
+            </div>
+            <div class="skills-category">
+                <h3>Languages</h3>
+                <ul>
+                    <li>Arabic</li>
+                    <li>English</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
     <section class="projects" id="projects">
@@ -582,6 +775,40 @@
         </ul>
     </section>
 
+    <section class="certificates" id="certificates">
+        <h2 class="section-title">My Certificates</h2>
+        <div class="certificates-grid">
+            <div class="certificate-card">
+                <a href="images/دوره1.jpg" target="_blank">
+                    <img src="images/دوره1.jpg" alt="Back End Development Certificate" />
+                </a>
+                <h4>Back-End Development</h4>
+                <p>Ministry of Communications and Information Technology, 12 Hours, Sep 3-5, 2024</p>
+            </div>
+            <div class="certificate-card">
+                <a href="images/دوره4.jpg" target="_blank">
+                    <img src="images/دوره4.jpg" alt="Exploratory Data Analysis Certificate" />
+                </a>
+                <h4>Exploratory Data Analysis (EDA)</h4>
+                <p>Tuwaiq Academy (Sattr Platform), 60 Hours, Issued July 24, 2024</p>
+            </div>
+            <div class="certificate-card">
+                <a href="images/دوره3.jpg" target="_blank">
+                    <img src="images/دوره3.jpg" alt="Introduction to IoT Certificate" />
+                </a>
+                <h4>Introduction to IoT (Beginner)</h4>
+                <p>Tuwaiq Academy (Sattr Platform), 1 Hour, Issued Jan 01, 2025</p>
+            </div>
+            <div class="certificate-card">
+                <a href="images/دوره5.jpg" target="_blank">
+                    <img src="images/دوره5.jpg" alt="C++ Programming Language Certificate" />
+                </a>
+                <h4>C++ Programming Language</h4>
+                <p>Ministry of Communications and Information Technology, 20 Hours, May 5-9, 2024</p>
+            </div>
+            </div>
+    </section>
+
     <section class="socials" id="contact">
         <h2 class="section-title">Connect With Me</h2>
         <a href="https://twitter.com/hhpptts" target="_blank">
@@ -613,8 +840,8 @@
 
             const observerOptions = {
                 root: null,
-                rootMargin: "0px",
-                threshold: 0.7 // Adjust this value to trigger active state when section is more visible
+                rootMargin: `-${document.querySelector('.navbar').offsetHeight}px 0px 0px 0px`, // Adjust rootMargin by navbar height
+                threshold: 0.3 // Adjust this value to trigger active state when section is more visible
             };
 
             const observer = new IntersectionObserver((entries) => {
@@ -623,6 +850,7 @@
                         navLinks.forEach(link => {
                             link.classList.remove("active");
                         });
+                        // Add active class to the current section's nav link
                         const currentNavLink = document.querySelector(`.navbar a[href="#${entry.target.id}"]`);
                         if (currentNavLink) {
                             currentNavLink.classList.add("active");
@@ -633,6 +861,24 @@
 
             sections.forEach(section => {
                 observer.observe(section);
+            });
+            // Handle initial load for active link
+            const firstSection = document.querySelector('section[id]');
+            if (firstSection) {
+                const initialNavLink = document.querySelector(`.navbar a[href="#${firstSection.id}"]`);
+                if (initialNavLink) {
+                    initialNavLink.classList.add('active');
+                }
+            }
+
+            // Smooth scroll for nav links (optional, browser default is often good)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
             });
         });
     </script>
