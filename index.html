@@ -1,289 +1,640 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dhari Almkhidsh</title>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Tajawal', sans-serif;
-      background: #000;
-      color: white;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      position: relative;
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dhari Almkhidsh - Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables for Easy Customization --- */
+        :root {
+            --primary-bg: #000;
+            --secondary-bg: #0d0d1a;
+            --text-color-light: #e0e0e0;
+            --text-color-dark: #ccc;
+            --accent-color: #00ffff; /* Neon cyan */
+            --accent-glow: #00ffffaa;
+            --shadow-intensity: 0.15;
+            --header-height: 80px; /* Height of the fixed header */
+        }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-      opacity: 0.07;
-      z-index: -1;
-    }
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color-light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            position: relative;
+            line-height: 1.6;
+        }
 
-    header {
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-      position: relative;
-    }
+        /* --- Star Background Animation --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            opacity: 0.07;
+            z-index: -1;
+            animation: starryBackground 60s linear infinite; /* Slower animation */
+        }
 
-    h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-    }
+        @keyframes starryBackground {
+            from { background-position: 0 0; }
+            to { background-position: 100% 100%; }
+        }
 
-    p.description {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-      color: #ccc;
-    }
+        /* --- Global Text Styles --- */
+        h1, h2, h3, p, a, span, li {
+            text-shadow: 0 0 10px var(--accent-glow), 0 0 20px rgba(0, 255, 255, 0.3); /* Enhanced neon glow */
+        }
 
-    .cv-link {
-      margin-top: 1rem;
-    }
+        /* --- Navigation Bar --- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+            height: var(--header-height);
+            box-shadow: 0 2px 10px rgba(0, 255, 255, var(--shadow-intensity));
+        }
 
-    .cv-link a {
-      color: #000;
-      background: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 2.5rem;
+        }
 
-    .cv-link a:hover {
-      background: #ccc;
-    }
+        .navbar a {
+            color: var(--text-color-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
 
-    .nav-links {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
 
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.9rem;
-      border: 1px solid #fff;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 100%;
+        }
 
-    .nav-links a:hover {
-      background: #fff;
-      color: #000;
-    }
+        .navbar a:hover,
+        .navbar a.active {
+            color: var(--accent-color);
+        }
 
-    /* قائمة منسدلة للدورات */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
+        /* --- Header Section --- */
+        header {
+            padding: 8rem 2rem 4rem; /* More vertical padding */
+            text-align: center;
+            position: relative;
+            min-height: calc(100vh - var(--header-height)); /* Ensure header takes full viewport height minus nav */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #000;
-      min-width: 180px;
-      z-index: 1;
-      border: 1px solid #fff;
-      border-radius: 8px;
-    }
+        h1 {
+            font-size: 4.5rem; /* Larger, more impactful */
+            margin-bottom: 1.5rem;
+            color: white;
+            letter-spacing: 2px;
+        }
 
-    .dropdown-content a {
-      color: white;
-      padding: 0.5rem 1rem;
-      display: block;
-      text-align: left;
-    }
+        p.description {
+            font-size: 1.5rem; /* Larger and more readable */
+            max-width: 900px;
+            margin: 0 auto 2.5rem;
+            color: var(--text-color-dark);
+            font-weight: 300;
+        }
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+        .cv-link a {
+            display: inline-block; /* Make it a block for padding/margin */
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid var(--accent-color);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px; /* Pill shape */
+            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
 
-    section {
-      padding: 3rem 1rem;
-      text-align: center;
-    }
+        .cv-link a:hover {
+            background: var(--accent-color);
+            color: var(--primary-bg);
+            box-shadow: 0 0 25px var(--accent-color);
+            transform: translateY(-3px);
+        }
 
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
+        /* --- General Section Styling --- */
+        section {
+            padding: 6rem 2rem; /* Consistent padding */
+            text-align: center;
+            margin-bottom: 0; /* No margin between sections, padding handles spacing */
+            position: relative;
+        }
 
-    .languages {
-      display: flex;
-      overflow-x: auto;
-      gap: 2rem;
-      padding: 1rem;
-      justify-content: start;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
+        .section-title {
+            font-size: 3rem; /* Prominent titles */
+            margin-bottom: 3.5rem;
+            color: white;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
 
-    .languages img {
-      width: 50px;
-      height: 50px;
-      animation: slide 60s linear infinite;
-      scroll-snap-align: center;
-    }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            border-radius: 5px;
+        }
 
-    @keyframes slide {
-      0% { transform: translateX(100vw); }
-      100% { transform: translateX(-100vw); }
-    }
+        /* --- About Me Section --- */
+        .about p {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: var(--text-color-dark);
+            line-height: 1.8;
+            font-weight: 300;
+            text-align: justify; /* Justify text for a cleaner look */
+            text-shadow: none; /* Remove text-shadow for better readability in paragraphs */
+        }
+        .about p br {
+            content: '';
+            display: block;
+            margin-bottom: 1em; /* Add space between paragraphs */
+        }
 
-    .skills p {
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-      color: #ccc;
-    }
+        /* --- Languages Section (Slider) --- */
+        .languages {
+            display: flex;
+            overflow: hidden; /* Hide scrollbar */
+            gap: 3rem; /* Spacing between images */
+            padding: 1rem 0;
+            justify-content: center; /* Center items when not enough to scroll */
+            position: relative;
+            width: 100%; /* Ensure it takes full width */
+            box-sizing: border-box;
+        }
 
-    .course-images {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      align-items: center;
-    }
+        .language-slider-container {
+            display: flex;
+            width: fit-content; /* Allow content to dictate width */
+            animation: slideLanguages 40s linear infinite; /* Slower, continuous slide */
+        }
 
-    .course-images img {
-      width: 80%;
-      max-width: 600px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 2s ease forwards;
-    }
+        .languages img {
+            width: 60px; /* Slightly larger icons */
+            height: 60px;
+            flex-shrink: 0; /* Prevent shrinking */
+            filter: grayscale(80%); /* Subtle desaturation */
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
 
-    .course-images img:nth-child(2) {
-      animation-delay: 1s;
-    }
+        .languages img:hover {
+            filter: grayscale(0%); /* Full color on hover */
+            transform: scale(1.1);
+        }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        /* Create duplicated content for seamless loop */
+        .languages .language-slider-container:nth-child(2) {
+            animation-delay: -20s; /* Start second copy halfway through animation */
+        }
 
-    .socials {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
+        @keyframes slideLanguages {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); } /* Half of total width to loop seamlessly */
+        }
 
-    .socials a img {
-      width: 32px;
-      height: 32px;
-      filter: grayscale(100%);
-      transition: filter 0.3s;
-    }
+        /* --- Skills Section --- */
+        .skills p {
+            font-size: 1.2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            color: var(--text-color-dark);
+            font-weight: 300;
+            text-align: justify;
+            text-shadow: none;
+        }
 
-    .socials a:hover img {
-      filter: grayscale(0%);
-    }
+        /* --- Projects Section --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
 
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-  </style>
+        .project-card {
+            background: rgba(0, 255, 255, 0.05); /* Subtle transparent background with accent */
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px var(--accent-color);
+            background: rgba(0, 255, 255, 0.08);
+        }
+
+        .project-card h3 {
+            color: var(--accent-color);
+            font-size: 1.7rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+
+        .project-card p {
+            color: var(--text-color-dark);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            text-shadow: none;
+        }
+
+        .project-card .project-links {
+            margin-top: 1.5rem;
+        }
+
+        .project-card .project-links a {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-right: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 1rem;
+            text-shadow: none; /* Remove text shadow for better link clarity */
+        }
+
+        .project-card .project-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+            text-shadow: 0 0 8px var(--accent-color);
+        }
+
+        /* --- Courses Section --- */
+        .courses ul {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: var(--text-color-dark);
+            animation: dropIn 1.5s ease-out forwards;
+            opacity: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Grid for courses */
+            gap: 1.5rem;
+        }
+
+        .courses ul li {
+            background: rgba(0, 255, 255, 0.08); /* Background for each course item */
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin: 0; /* Remove individual margin as grid handles gap */
+            text-align: left;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-shadow: none;
+        }
+
+        .courses ul li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        /* --- Socials Section --- */
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            padding-bottom: 2rem;
+        }
+
+        .socials a img {
+            width: 48px; /* Larger icons */
+            height: 48px;
+            filter: grayscale(100%) brightness(0.8) drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); /* White grayscale with subtle shadow */
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .socials a:hover img {
+            filter: grayscale(0%) brightness(1) drop-shadow(0 0 15px var(--accent-color)); /* Full color with strong glow */
+            transform: scale(1.1);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            font-size: 1rem;
+            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 4rem;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 1024px) {
+            .navbar ul {
+                gap: 1.5rem;
+            }
+            .navbar a {
+                font-size: 1rem;
+            }
+            h1 {
+                font-size: 3.8rem;
+            }
+            p.description {
+                font-size: 1.3rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: auto;
+                padding: 1rem 1rem;
+            }
+            .navbar ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            h1 {
+                font-size: 2.8rem;
+            }
+            p.description {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .cv-link a {
+                padding: 0.6rem 1.2rem;
+                font-size: 1rem;
+            }
+            section {
+                padding: 4rem 1rem;
+            }
+            .languages img {
+                width: 50px;
+                height: 50px;
+            }
+            .about p, .skills p, .courses ul, .project-card p {
+                font-size: 1rem;
+                text-align: left; /* Keep left align for better mobile readability */
+            }
+            .project-card {
+                padding: 1.5rem;
+            }
+            .project-card h3 {
+                font-size: 1.5rem;
+            }
+            .socials a img {
+                width: 40px;
+                height: 40px;
+            }
+            .courses ul {
+                grid-template-columns: 1fr; /* Stack courses on small screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            p.description {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- روابط التنقل -->
-  <div class="nav-links">
-    <a href="#skills">Skills</a>
-    <a href="#languages">Languages</a>
-    <a href="#cv">CV</a>
-    <div class="dropdown">
-      <a href="#courses">Courses ▼</a>
-      <div class="dropdown-content">
-        <a href="#course2">Back-End Development</a>
-        <a href="#course1">IoT</a>
-      </div>
-    </div>
-  </div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#languages">Languages</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#cv">CV</a></li>
+        </ul>
+    </nav>
 
-  <!-- الهيدر -->
-  <header>
-    <h1>Dhari Almkhidsh</h1>
-    <p class="description">I'm a software engineering student at the University of Hail. I enjoy turning ideas into real-world software and exploring the latest tech trends. Welcome to my personal space on the web!</p>
-    <div class="cv-link" id="cv">
-      <a href="/mnt/data/Cv-Dhari%20Abdullah%20.pdf" target="_blank">Download My CV (PDF)</a>
-    </div>
-  </header>
+    <header>
+        <h1>Dhari Almkhidsh</h1>
+        <p class="description">I'm a software engineering student at the University of Hail (2020 – 2025). I enjoy turning ideas into real-world software and exploring the latest tech trends. Welcome to my personal space on the web!</p>
+        <div class="cv-link" id="cv">
+            <a href="your_public_cv_link.pdf" target="_blank" download>Download My CV (PDF)</a>
+        </div>
+    </header>
 
-  <!-- اللغات -->
-  <section id="languages">
-    <h2 class="section-title">My Languages</h2>
-    <div class="languages">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-    </div>
-  </section>
+    <section class="about" id="about">
+        <h2 class="section-title">About Me</h2>
+        <p>
+            I am an enthusiastic software engineer focused on developing clean, scalable, and high-performance web applications.
+            What began as a curiosity about how technology works has evolved into a commitment to solving real-world problems
+            through thoughtful and efficient coding.
+            <br><br>
+            With experience in both front-end and back-end development, I enjoy working across the full stack to deliver seamless
+            user experiences. My core tools include React.js, Go, and FastAPI—technologies I leverage to turn ideas into reality
+            with precision and clarity.
+            <br><br>
+            I am always on a journey to explore new technologies and enhance my skills to stay current in this rapidly evolving field.
+            For me, great software is not just about functionality—it should be reliable, easy to maintain, and built with a clear purpose.
+        </p>
+    </section>
 
-  <!-- المهارات -->
-  <section class="skills" id="skills">
-    <h2 class="section-title">Skills</h2>
-    <p>I have a strong foundation in computer science and problem solving. My skills include debugging, clean code writing, API integration, responsive web design, and working with version control systems like Git. I'm constantly improving my ability to learn quickly and adapt to new technologies.</p>
-  </section>
+    <section id="languages">
+        <h2 class="section-title">My Languages & Technologies</h2>
+        <div class="languages">
+            <div class="language-slider-container">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Go" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+            </div>
+            <div class="language-slider-container">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Go" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React.js" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+            </div>
+        </div>
+    </section>
 
-  <!-- الدورات -->
-  <section class="courses" id="courses">
-    <h2 class="section-title">Courses</h2>
-    <div class="course-images">
-      <img id="course1" src="/mnt/data/B8A4EB0F-DFFC-4BF7-AFAB-AE404C1D3214.jpeg" alt="Course 1 - IoT" class="fade-in" />
-      <img id="course2" src="/mnt/data/1835FF52-A3A1-411E-82B6-DE3EE8EA7815.jpeg" alt="Course 2 - Back End" class="fade-in" />
-    </div>
-  </section>
+    <section class="skills" id="skills">
+        <h2 class="section-title">Skills</h2>
+        <p>I have a strong foundation in computer science principles and problem-solving methodologies. My expertise includes **robust debugging**, writing **clean and maintainable code**, seamless **API integration**, and developing **responsive web designs** that adapt across devices. I am proficient with **version control systems like Git** and regularly contribute to open-source projects. My commitment to continuous learning drives me to quickly **adapt to new technologies** and frameworks, ensuring I stay at the forefront of software innovation.</p>
+    </section>
 
-  <!-- التواصل الاجتماعي -->
-  <section class="socials">
-    <a href="https://twitter.com/hhpptts" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" />
-    </a>
-    <a href="https://instagram.com/hhpttts" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
-    </a>
-    <a href="https://snapchat.com/add/isdhari" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Snapchat" />
-    </a>
-    <a href="https://sa.linkedin.com/in/dhari-almkhidsh" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
-    </a>
-  </section>
+    <section class="projects" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Personal Portfolio Website</h3>
+                <p>Designed and developed a responsive personal portfolio website using HTML, CSS, and JavaScript to showcase skills and projects.</p>
+                <div class="project-links">
+                    <a href="#" target="_blank">View Project</a>
+                    <a href="#" target="_blank">GitHub Repo</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Task Management API (Go/FastAPI)</h3>
+                <p>Built a robust backend API for task management with user authentication, data validation, and database integration using Go and FastAPI.</p>
+                <div class="project-links">
+                    <a href="#" target="_blank">View Project</a>
+                    <a href="#" target="_blank">GitHub Repo</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>E-commerce Frontend (React.js)</h3>
+                <p>Developed a dynamic and interactive e-commerce frontend application, focusing on state management, component reusability, and user experience.</p>
+                <div class="project-links">
+                    <a href="#" target="_blank">View Project</a>
+                    <a href="#" target="_blank">GitHub Repo</a>
+                </div>
+            </div>
+            </div>
+    </section>
 
-  <!-- الفوتر -->
-  <footer>
-    Contact me: isdhari-abdullah@gmail.com
-  </footer>
+    <section class="courses" id="courses">
+        <h2 class="section-title">Certifications & Courses</h2>
+        <ul>
+            <li>**Back-End Development** - Comprehensive training in server-side logic and database management.</li>
+            <li>**Data and Artificial Intelligence Fundamentals** - Introduction to AI concepts, machine learning, and data processing.</li>
+            <li>**Internet of Things (IoT) Essentials** - Explored connected devices, sensor technology, and IoT architecture.</li>
+            <li>**Data Analysis with Python** - Hands-on experience with data manipulation, visualization, and statistical analysis using Python libraries.</li>
+            <li>**Advanced C++ Programming** - Deep dive into advanced C++ features, object-oriented programming, and system-level development.</li>
+        </ul>
+    </section>
 
+    <section class="socials" id="contact">
+        <h2 class="section-title">Connect With Me</h2>
+        <a href="https://twitter.com/hhpptts" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" />
+        </a>
+        <a href="https://instagram.com/hhpttts" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
+        </a>
+        <a href="https://snapchat.com/add/isdhari" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Snapchat" />
+        </a>
+        <a href="https://sa.linkedin.com/in/dhari-almkhidsh" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
+        </a>
+        <a href="mailto:isdhari-abdullah@gmail.com" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" />
+        </a>
+    </section>
+
+    <footer>
+        &copy; 2025 Dhari Almkhidsh. All rights reserved.
+    </footer>
+
+    <script>
+        // JavaScript for active navigation link
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll(".navbar a");
+
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.7 // Adjust this value to trigger active state when section is more visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove("active");
+                        });
+                        const currentNavLink = document.querySelector(`.navbar a[href="#${entry.target.id}"]`);
+                        if (currentNavLink) {
+                            currentNavLink.classList.add("active");
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
