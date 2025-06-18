@@ -1,259 +1,501 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dhari Almkhidsh</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #000;
-      color: white;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      position: relative;
-    }
 
-    /* خلفية نجوم */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-      opacity: 0.07;
-      z-index: -1;
-    }
+  <meta charset="UTF-8" />
 
-    header {
-      padding: 4rem 2rem 2rem;
-      text-align: center;
-      position: relative;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 8px #ffffffaa;
-    }
+  <title>Dhari Almkhidsh</title>
 
-    p.description {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-      color: #ccc;
-      text-shadow: 0 0 4px #ffffff33;
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
-    .cv-link {
-      margin-top: 1rem;
-    }
+  <style>
 
-    .cv-link a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      border: 1px solid #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
+    body {
 
-    .cv-link a:hover {
-      background: #fff;
-      color: #000;
-    }
+      margin: 0;
 
-    .nav-links {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
+      font-family: 'Poppins', sans-serif;
 
-    .nav-links a {
-      margin-left: 1rem;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.9rem;
-      border: 1px solid #fff;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
+      background: #000;
 
-    .nav-links a:hover {
-      background: #fff;
-      color: #000;
-    }
+      color: white;
 
-    section {
-      padding: 3rem 1rem;
-      text-align: center;
-    }
+      overflow-x: hidden;
 
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      text-shadow: 0 0 6px #ffffff99;
-    }
+      scroll-behavior: smooth;
 
-    .languages {
-      display: flex;
-      overflow-x: auto;
-      gap: 2rem;
-      padding: 1rem;
-      justify-content: start;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
+      position: relative;
 
-    .languages img {
-      width: 50px;
-      height: 50px;
-      animation: slide 25s linear infinite;
-      scroll-snap-align: center;
-    }
+    }
 
-    @keyframes slide {
-      0% { transform: translateX(100vw); }
-      100% { transform: translateX(-100vw); }
-    }
 
-    .skills p {
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto;
-      color: #ccc;
-    }
 
-    /* الشهادات */
-    .course-images {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      align-items: center;
-    }
+    /* خلفية النجوم */
 
-    .course-images img {
-      width: 80%;
-      max-width: 600px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 2s ease forwards;
-    }
+    body::before {
 
-    .course-images img:nth-child(2) {
-      animation-delay: 1s;
-    }
+      content: "";
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+      position: fixed;
 
-    /* التواصل */
-    .socials {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
+      top: 0;
 
-    .socials a img {
-      width: 32px;
-      height: 32px;
-      filter: grayscale(100%);
-      transition: filter 0.3s;
-    }
+      left: 0;
 
-    .socials a:hover img {
-      filter: grayscale(0%);
-    }
+      width: 100%;
 
-    footer {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-  </style>
+      height: 100%;
+
+      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+
+      opacity: 0.07;
+
+      z-index: -1;
+
+    }
+
+
+
+    header {
+
+      padding: 4rem 2rem 2rem;
+
+      text-align: center;
+
+    }
+
+
+
+    h1, h2, p, a, span, li {
+
+      text-shadow: 0 0 8px #00ffffaa, 0 0 12px #00ffff55;
+
+    }
+
+
+
+    h1 {
+
+      font-size: 3.5rem;
+
+      margin-bottom: 1rem;
+
+    }
+
+
+
+    p.description {
+
+      font-size: 1.3rem;
+
+      max-width: 700px;
+
+      margin: 0 auto 1.5rem;
+
+      color: #ccc;
+
+    }
+
+
+
+    .cv-link {
+
+      margin-top: 1rem;
+
+    }
+
+
+
+    .cv-link a {
+
+      color: #fff;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      border: 1px solid #fff;
+
+      padding: 0.5rem 1rem;
+
+      border-radius: 8px;
+
+      transition: background 0.3s;
+
+    }
+
+
+
+    .cv-link a:hover {
+
+      background: #fff;
+
+      color: #000;
+
+    }
+
+
+
+    section {
+
+      padding: 3rem 1rem;
+
+      text-align: center;
+
+    }
+
+
+
+    .section-title {
+
+      font-size: 2rem;
+
+      margin-bottom: 2rem;
+
+    }
+
+
+
+    .languages {
+
+      display: flex;
+
+      overflow-x: auto;
+
+      gap: 2rem;
+
+      padding: 1rem;
+
+      justify-content: start;
+
+      scroll-snap-type: x mandatory;
+
+      -webkit-overflow-scrolling: touch;
+
+    }
+
+
+
+    .languages img {
+
+      width: 50px;
+
+      height: 50px;
+
+      animation: slide 25s linear infinite;
+
+      scroll-snap-align: center;
+
+    }
+
+
+
+    @keyframes slide {
+
+      0% { transform: translateX(100vw); }
+
+      100% { transform: translateX(-100vw); }
+
+    }
+
+
+
+    .skills p {
+
+      font-size: 1.1rem;
+
+      max-width: 700px;
+
+      margin: 0 auto;
+
+      color: #ccc;
+
+    }
+
+
+
+    .courses ul {
+
+      list-style: none;
+
+      padding: 0;
+
+      max-width: 700px;
+
+      margin: 0 auto;
+
+      font-size: 1.1rem;
+
+      color: #ccc;
+
+      animation: dropIn 1.5s ease-out forwards;
+
+      opacity: 0;
+
+    }
+
+
+
+    .courses ul li {
+
+      margin: 0.5rem 0;
+
+      transform: translateY(-20px);
+
+    }
+
+
+
+    @keyframes dropIn {
+
+      to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+      }
+
+    }
+
+
+
+    .socials {
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 1.5rem;
+
+      margin-top: 2rem;
+
+      flex-wrap: wrap;
+
+    }
+
+
+
+    .socials a img {
+
+      width: 32px;
+
+      height: 32px;
+
+      filter: grayscale(100%);
+
+      transition: filter 0.3s;
+
+    }
+
+
+
+    .socials a:hover img {
+
+      filter: grayscale(0%);
+
+    }
+
+
+
+    footer {
+
+      text-align: center;
+
+      margin-top: 2rem;
+
+      font-size: 0.9rem;
+
+      color: #aaa;
+
+    }
+
+
+
+    .about p {
+
+      max-width: 800px;
+
+      margin: 0 auto;
+
+      font-size: 1.1rem;
+
+      color: #ccc;
+
+      line-height: 1.7;
+
+    }
+
+  </style>
+
 </head>
+
 <body>
 
-  <!-- روابط تنقل -->
-  <div class="nav-links">
-    <a href="#skills">Skills</a>
-    <a href="#languages">Languages</a>
-    <a href="#cv">CV</a>
-    <a href="#courses">Courses</a>
-  </div>
 
-  <!-- الهيدر -->
-  <header>
-    <h1>Dhari Almkhidsh</h1>
-    <p class="description">I'm a software engineering student at the University of Hail. I enjoy turning ideas into real-world software and exploring the latest tech trends. Welcome to my personal space on the web!</p>
-    <div class="cv-link" id="cv">
-      <a href="/mnt/data/Cv-Dhari%20Abdullah%20.pdf" target="_blank">Download My CV (PDF)</a>
-    </div>
-  </header>
 
-  <!-- اللغات -->
-  <section id="languages">
-    <h2 class="section-title">My Languages</h2>
-    <div class="languages">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" />
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-    </div>
-  </section>
+  <!-- الهيدر -->
 
-  <!-- المهارات -->
-  <section class="skills" id="skills">
-    <h2 class="section-title">Skills</h2>
-    <p>I have a strong foundation in computer science and problem solving. My skills include debugging, clean code writing, API integration, responsive web design, and working with version control systems like Git. I'm constantly improving my ability to learn quickly and adapt to new technologies.</p>
-  </section>
+  <header>
 
-  <!-- الدورات -->
-  <section class="courses" id="courses">
-    <h2 class="section-title">Courses</h2>
-    <div class="course-images">
-      <img src="/mnt/data/B8A4EB0F-DFFC-4BF7-AFAB-AE404C1D3214.jpeg" alt="Course 1 - IoT" class="fade-in" />
-      <img src="/mnt/data/1835FF52-A3A1-411E-82B6-DE3EE8EA7815.jpeg" alt="Course 2 - Back End" class="fade-in" />
-    </div>
-  </section>
+    <h1>Dhari Almkhidsh</h1>
 
-  <!-- التواصل الاجتماعي -->
-  <section class="socials">
-    <a href="https://twitter.com/hhpptts" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" />
-    </a>
-    <a href="https://instagram.com/hhpttts" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
-    </a>
-    <a href="https://snapchat.com/add/isdhari" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Snapchat" />
-    </a>
-    <a href="https://sa.linkedin.com/in/dhari-almkhidsh" target="_blank">
-      <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
-    </a>
-  </section>
+    <p class="description">I'm a software engineering student at the University of Hail (2020 – 2025). I enjoy turning ideas into real-world software and exploring the latest tech trends. Welcome to my personal space on the web!</p>
 
-  <!-- الفوتر -->
-  <footer>
-    Contact me: isdhari-abdullah@gmail.com
-  </footer>
+    <div class="cv-link" id="cv">
+
+      <a href="/mnt/data/Cv-Dhari%20Abdullah%20.pdf" target="_blank">Download My CV (PDF)</a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- About Me -->
+
+  <section class="about" id="about">
+
+    <h2 class="section-title">About Me</h2>
+
+    <p>
+
+      I am an enthusiastic software engineer focused on developing clean, scalable, and high-performance web applications.
+
+      What began as a curiosity about how technology works has evolved into a commitment to solving real-world problems
+
+      through thoughtful and efficient coding.
+
+      <br><br>
+
+      With experience in both front-end and back-end development, I enjoy working across the full stack to deliver seamless
+
+      user experiences. My core tools include React.js, Go, and FastAPI—technologies I leverage to turn ideas into reality
+
+      with precision and clarity.
+
+      <br><br>
+
+      I am always on a journey to explore new technologies and enhance my skills to stay current in this rapidly evolving field.
+
+      For me, great software is not just about functionality—it should be reliable, easy to maintain, and built with a clear purpose.
+
+    </p>
+
+  </section>
+
+
+
+  <!-- اللغات -->
+
+  <section id="languages">
+
+    <h2 class="section-title">My Languages</h2>
+
+    <div class="languages">
+
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
+
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" />
+
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+
+    </div>
+
+  </section>
+
+
+
+  <!-- المهارات -->
+
+  <section class="skills" id="skills">
+
+    <h2 class="section-title">Skills</h2>
+
+    <p>I have a strong foundation in computer science and problem solving. My skills include debugging, clean code writing, API integration, responsive web design, and working with version control systems like Git. I'm constantly improving my ability to learn quickly and adapt to new technologies.</p>
+
+  </section>
+
+
+
+  <!-- الدورات -->
+
+  <section class="courses" id="courses">
+
+    <h2 class="section-title">Courses</h2>
+
+    <ul>
+
+      <li>1 - Back-End Development</li>
+
+      <li>2 - البيانات والذكاء الاصطناعي</li>
+
+      <li>3 - إنترنت الأشياء</li>
+
+      <li>4 - تحليل البيانات</li>
+
+      <li>5 - C++</li>
+
+    </ul>
+
+  </section>
+
+
+
+  <!-- التواصل الاجتماعي -->
+
+  <section class="socials">
+
+    <a href="https://twitter.com/hhpptts" target="_blank">
+
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" />
+
+    </a>
+
+    <a href="https://instagram.com/hhpttts" target="_blank">
+
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
+
+    </a>
+
+    <a href="https://snapchat.com/add/isdhari" target="_blank">
+
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Snapchat" />
+
+    </a>
+
+    <a href="https://sa.linkedin.com/in/dhari-almkhidsh" target="_blank">
+
+      <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
+
+    </a>
+
+  </section>
+
+
+
+  <!-- الفوتر -->
+
+  <footer>
+
+    Contact me: isdhari-abdullah@gmail.com
+
+  </footer>
+
+
 
 </body>
+
 </html>
