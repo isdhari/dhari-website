@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glowing Stars Website</title>
+<style>
+body {
+    margin: 0;
+    overflow: hidden; /* لإخفاء أي جزء من النجوم قد يخرج عن الشاشة */
+    background-color: #000; /* خلفية سوداء */
+    color: white; /* لون النص الافتراضي أبيض */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* خط حديث وواضح */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* لجعل الجسم يغطي كامل ارتفاع الشاشة */
+    position: relative; /* لتحديد موقع النجوم */
+}
+
+/* النجوم */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* لجعل النجوم خلف النصوص */
+}
+
+.star {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8); /* نقاط بيضاء شبه شفافة */
+    border-radius: 50%; /* لجعلها دائرية */
+    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.6); /* توهج أبيض خفيف */
+    animation: twinkle 5s infinite ease-in-out alternate; /* تأثير الوميض */
+}
+
+/* لتحديد حجم وموقع النجوم بشكل عشوائي */
+.star:nth-child(1) { width: 3px; height: 3px; top: 10%; left: 20%; animation-delay: 0s; }
+.star:nth-child(2) { width: 2px; height: 2px; top: 30%; left: 70%; animation-delay: 1s; }
+.star:nth-child(3) { width: 4px; height: 4px; top: 60%; left: 40%; animation-delay: 2s; }
+.star:nth-child(4) { width: 2.5px; height: 2.5px; top: 80%; left: 10%; animation-delay: 0.5s; }
+.star:nth-child(5) { width: 3.5px; height: 3.5px; top: 25%; left: 90%; animation-delay: 1.5s; }
+.star:nth-child(6) { width: 2px; height: 2px; top: 45%; left: 55%; animation-delay: 2.5s; }
+.star:nth-child(7) { width: 4px; height: 4px; top: 70%; left: 80%; animation-delay: 0s; }
+.star:nth-child(8) { width: 3px; height: 3px; top: 5%; left: 50%; animation-delay: 1s; }
+.star:nth-child(9) { width: 2.5px; height: 2.5px; top: 90%; left: 30%; animation-delay: 2s; }
+.star:nth-child(10) { width: 3px; height: 3px; top: 50%; left: 5%; animation-delay: 0.7s; }
+/* يمكنك إضافة المزيد من الـ star:nth-child لنجوم أكثر */
+
+@keyframes twinkle {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+
+/* النصوص */
+.text-container {
+    position: relative; /* مهم لضمان ظهور النصوص فوق النجوم */
+    z-index: 2; /* لجعل النصوص فوق النجوم */
+    text-align: center; /* لمحاذاة النصوص في المنتصف */
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* مسافة بين النصين */
+}
+
+.text {
+    font-size: 8em; /* تكبير حجم الخط */
+    color: white;
+    text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white; /* توهج أكبر */
+    white-space: nowrap; /* يمنع النص من النزول لسطر جديد */
+    animation: moveLeft 15s linear infinite; /* جعل الحركة أبطأ قليلاً */
+    direction: rtl; /* اتجاه النص من اليمين لليسار */
+}
+
+.text2 {
+    font-size: 8em; /* تكبير حجم الخط */
+    color: white;
+    text-shadow: 0 0 20px white, 0 0 30px white, 0 0 40px white; /* توهج أكبر */
+    white-space: nowrap;
+    animation: moveRight 15s linear infinite; /* جعل الحركة أبطأ قليلاً */
+    direction: ltr; /* اتجاه النص من اليسار لليمين */
+}
+
+/* حركات النصوص */
+@keyframes moveLeft {
+    0% { transform: translateX(100vw); } /* تبدأ من أقصى اليمين */
+    100% { transform: translateX(-100vw); } /* تتحرك إلى أقصى اليسار */
+}
+
+@keyframes moveRight {
+    0% { transform: translateX(-100vw); } /* تبدأ من أقصى اليسار */
+    100% { transform: translateX(100vw); } /* تتحرك إلى أقصى اليمين */
+}
+
+/* لجعل الصفحة تتكيف مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .text, .text2 {
+        font-size: 4em; /* تصغير الخط على الجوالات */
+    }
+}
+@media (max-width: 480px) {
+    .text, .text2 {
+        font-size: 2.5em; /* تصغير أكثر على الشاشات الصغيرة جداً */
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="stars">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+</div>
+
+<div class="text-container">
+  <div class="text">😉 I love you</div>
+  <div class="text2">نجد</div>
+</div>
+
+</body>
+</html>
