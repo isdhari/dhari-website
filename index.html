@@ -20,6 +20,7 @@
         }
 
         body {
+        
             margin: 0;
             font-family: 'Poppins', sans-serif;
             background-color: var(--primary-bg);
@@ -30,17 +31,26 @@
             line-height: 1.6;
         }
 
-        /* --- Canvas Starfield Styles --- */
-        #starfield {
+        /* --- Star Background Animation --- */
+        body::before {
+            content: "";
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw; /* عرض كامل الشاشة */
-            height: 100vh; /* ارتفاع كامل الشاشة */
-            z-index: -2; /* ليكون خلف كل المحتوى */
+            width: 100%;
+            height: 100%;
+            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            opacity: 0.07;
+            z-index: -1;
+            animation: starryBackground 60s linear infinite; /* Slower animation */
         }
 
-        /* --- Earth Background Overlay (kept as it's a subtle, non-star effect) --- */
+        @keyframes starryBackground {
+            from { background-position: 0 0; }
+            to { background-position: 100% 100%; }
+        }
+
+        /* --- Earth Background Overlay --- */
         body::after {
             content: "";
             position: fixed;
@@ -51,8 +61,9 @@
             background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Full_Globe_Map.png/1280px-Full_Globe_Map.png') no-repeat center center fixed;
             background-size: cover;
             opacity: 0.03; /* Very subtle */
-            z-index: -3; /* Below stars and all content */
+            z-index: -2; /* Below stars */
         }
+
 
         /* --- Global Text Styles --- */
         h1, h2, h3, p, a, span, li {
@@ -633,7 +644,6 @@
     </style>
 </head>
 <body>
-    <canvas id="starfield"></canvas>
 
     <nav class="navbar">
         <ul>
@@ -787,7 +797,7 @@
                     <a href="#" target="_blank">GitHub Repo</a>
                 </div>
             </div>
-        </div>
+            </div>
     </section>
 
     <section class="certificates" id="certificates">
@@ -798,73 +808,105 @@
                 <p>Ministry of Communications and Information Technology, 12 Hours, Sep 3-5, 2024</p>
             </div>
             <div class="certificate-card">
-                <h4>Data Science Fundamentals</h4>
-                <p>Coursera, Completed March 2024</p>
+                <h4>C++ Programming Language</h4>
+                <p>Ministry of Communications and Information Technology, 20 Hours, May 5-9, 2024</p>
+            </div>
+            <div class="certificate-card">
+                <h4>Exploratory Data Analysis (EDA)</h4>
+                <p>Tuwaiq Academy (Sattr Platform), 60 Hours, Issued July 24, 2024</p>
+            </div>
+            <div class="certificate-card">
+                <h4>Introduction to IoT (Beginner)</h4>
+                <p>Tuwaiq Academy (Sattr Platform), 1 Hour, Issued Jan 01, 2025</p>
+            </div>
+            <div class="certificate-card">
+                <h4>Flutter 101 (Beginner)</h4>
+                <p>Tuwaiq Academy (Sattr Platform), 3 Hours, Issued July 21, 2024</p>
+            </div>
+            <div class="certificate-card">
+                <h4>Swift 101 (Beginner)</h4>
+                <p>Tuwaiq Academy (Sattr Platform), 4 Hours, Issued July 23, 2024</p>
+            </div>
+            <div class="certificate-card">
+                <h4>Swift 102 (Intermediate)</h4>
+                <p>Tuwaiq Academy (Sattr Platform), 4 Hours, Issued July 23, 2024</p>
+            </div>
+            <div class="certificate-card">
+                <h4>Flutter 102 (Intermediate)</h4>
+                <p>Tuwaiq Academy (Sattr Platform), 2 Hours, Issued July 21, 2024</p>
             </div>
         </div>
     </section>
 
-    <section class="socials-contact" id="contact">
+    <section class="socials" id="contact">
         <h2 class="section-title">Connect With Me</h2>
-        <div class="socials">
-            <a href="https://github.com/isdhari" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/github.png" alt="GitHub"></a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn"></a>
-            <a href="mailto:your.email@example.com"><img src="https://img.icons8.com/ios-filled/50/ffffff/mail.png" alt="Email"></a>
-            </div>
+        <a href="https://twitter.com/hhpptts" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" />
+        </a>
+        <a href="https://instagram.com/hhpttts" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
+        </a>
+        <a href="https://snapchat.com/add/isdhari" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111585.png" alt="Snapchat" />
+        </a>
+        <a href="https://sa.linkedin.com/in/dhari-almkhidsh" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn" />
+        </a>
+        <a href="mailto:isdhari-abdullah@gmail.com" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" />
+        </a>
     </section>
 
     <footer>
-        <p>&copy; 2025 Dhari Almkhidsh. All rights reserved.</p>
+        &copy; 2025 Dhari Almkhidsh. All rights reserved.
     </footer>
 
     <script>
-        const canvas = document.getElementById("starfield");
-        const ctx = canvas.getContext("2d");
+        // JavaScript for active navigation link
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll(".navbar a");
 
-        let stars = [];
-        const numStars = 400; // يمكنك زيادة أو تقليل هذا العدد للتحكم في كثافة النجوم
+            const observerOptions = {
+                root: null,
+                rootMargin: `-${document.querySelector('.navbar').offsetHeight}px 0px 0px 0px`,
+                threshold: 0.3
+            };
 
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove("active");
+                        });
+                        const currentNavLink = document.querySelector(`.navbar a[href="#${entry.target.id}"]`);
+                        if (currentNavLink) {
+                            currentNavLink.classList.add("active");
+                        }
+                    }
+                });
+            }, observerOptions);
 
-        window.addEventListener("resize", resize);
-        resize(); // استدعاء عند التحميل الأولي لضبط الحجم
-
-        const centerX = () => canvas.width / 2;
-        const centerY = () => canvas.height / 2;
-
-        // إنشاء النجوم
-        for (let i = 0; i < numStars; i++) {
-            stars.push({
-                radius: Math.random() * 1.5 + 0.3, // حجم النجمة (بين 0.3 و 1.8 بكسل)
-                angle: Math.random() * 2 * Math.PI, // زاوية عشوائية
-                distance: Math.random() * Math.min(canvas.width, canvas.height) / 2, // المسافة من المنتصف
-                speed: Math.random() * 0.0008 + 0.0002 // سرعة دوران النجمة حول المنتصف
+            sections.forEach(section => {
+                observer.observe(section);
             });
-        }
-
-        // دالة تحريك النجوم ورسمها
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // مسح الشاشة في كل إطار
-            ctx.fillStyle = "white"; // لون النجوم أبيض
-
-            for (let star of stars) {
-                star.angle += star.speed; // تحديث زاوية النجمة
-                const x = centerX() + Math.cos(star.angle) * star.distance; // حساب موضع X
-                const y = centerY() + Math.sin(star.angle) * star.distance; // حساب موضع Y
-                ctx.beginPath();
-                ctx.arc(x, y, star.radius, 0, 2 * Math.PI); // رسم دائرة (النجمة)
-                ctx.fill(); // ملء الدائرة باللون الأبيض
+            const firstSection = document.querySelector('section[id]');
+            if (firstSection) {
+                const initialNavLink = document.querySelector(`.navbar a[href="#${firstSection.id}"]`);
+                if (initialNavLink) {
+                    initialNavLink.classList.add('active');
+                }
             }
 
-            requestAnimationFrame(animate); // طلب الإطار التالي
-        }
-
-        animate(); // بدء التحريك
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
     </script>
 </body>
 </html>
-
-
