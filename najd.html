@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+ <head>
+ <title>Glowing Moving Text</title>
+ <style>
+ body { margin: 0; overflow: hidden; background-color: black; }
+ .container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; }
+ .text { font-size: 5em; color: white; text-shadow: 0 0 10px white; animation: moveLeft 10s linear infinite; direction: rtl; }
+ .text2 { font-size: 5em; color: white; text-shadow: 0 0 10px white; animation: moveRight 10s linear infinite; direction: ltr; }
+ @keyframes moveLeft { 0% { transform: translateX(100vw); } 100% { transform: translateX(-100vw); } }
+ @keyframes moveRight { 0% { transform: translateX(-100vw); } 100% { transform: translateX(100vw); } }
+ </style>
+ </head>
+ <body>
+ <div class="container">
+   <div class="text">I love you</div>
+   <div class="text2">نجد</div>
+ </div>
+ </body>
+ </html>
