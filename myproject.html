@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>تطبيق رحلات بسيط</title>
+  <title>تطبيق رحلات - بحث الرحلات</title>
   <style>
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4f8;
+      background: #f9f9f9;
       margin: 0;
       padding: 20px;
       direction: rtl;
@@ -20,10 +20,11 @@
       text-align: center;
       font-size: 1.5em;
       font-weight: bold;
+      margin-bottom: 20px;
     }
     main {
-      max-width: 400px;
-      margin: 30px auto;
+      max-width: 600px;
+      margin: 0 auto;
       background: white;
       padding: 20px;
       border-radius: 8px;
@@ -34,7 +35,7 @@
       margin-bottom: 5px;
       font-weight: 600;
     }
-    input, select {
+    select {
       width: 100%;
       padding: 8px 12px;
       margin-bottom: 15px;
@@ -59,62 +60,131 @@
     }
     #message {
       margin-top: 15px;
-      text-align: center;
       font-weight: bold;
-      color: green;
+      text-align: center;
+      color: red;
+    }
+    #results {
+      margin-top: 25px;
+    }
+    .ride-card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      background: #f7faff;
+    }
+    .ride-header {
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      color: #005bb5;
+    }
+    .ride-details {
+      font-size: 0.95em;
+      color: #444;
     }
   </style>
 </head>
 <body>
 
-<header>تطبيق رحلات</header>
+<header>تطبيق رحلات - بحث الرحلات</header>
 
 <main>
-  <form id="ride-form">
-    <label for="from">من:</label>
+  <form id="search-form">
+    <label for="from">مكان الانطلاق:</label>
     <select id="from" name="from" required>
-      <option value="">اختر موقع الانطلاق</option>
-      <option value="alqassim">القصيم</option>
-      <option value="riyadh">الرياض</option>
-      <option value="jeddah">جدة</option>
+      <option value="">اختر مكان الانطلاق</option>
+      <option value="القصيم">القصيم</option>
+      <option value="الرياض">الرياض</option>
+      <option value="جدة">جدة</option>
     </select>
 
-    <label for="to">إلى:</label>
+    <label for="to">مكان الوصول:</label>
     <select id="to" name="to" required>
-      <option value="">اختر الوجهة</option>
-      <option value="riyadh">الرياض</option>
-      <option value="alqassim">القصيم</option>
-      <option value="jeddah">جدة</option>
+      <option value="">اختر مكان الوصول</option>
+      <option value="الرياض">الرياض</option>
+      <option value="القصيم">القصيم</option>
+      <option value="جدة">جدة</option>
     </select>
 
-    <label for="seats">عدد المقاعد:</label>
-    <input type="number" id="seats" name="seats" min="1" max="6" value="1" required />
-
-    <button type="submit">ابحث عن رحلات</button>
+    <button type="submit">بحث</button>
   </form>
 
   <div id="message"></div>
+  <div id="results"></div>
 </main>
 
 <script>
-  const form = document.getElementById('ride-form');
-  const messageDiv = document.getElementById('message');
+  const form = document.getElementById('search-form');
+  const message = document.getElementById('message');
+  const results = document.getElementById('results');
 
-  form.addEventListener('submit', (e) => {
+  function generateRandomRides(from, to) {
+    const rides = [];
+    const numRides = Math.floor(Math.random() * 5) + 2; // 2-6 رحلات
+
+    for(let i=0; i<numRides; i++) {
+      const totalSeats = Math.floor(Math.random() * 6) + 2; // 2-7 مقاعد
+      const seatsBooked = Math.floor(Math.random() * totalSeats);
+      const seatsAvailable = totalSeats - seatsBooked;
+
+      // وقت الانطلاق عشوائي خلال 6 ساعات القادمة
+      const now = new Date();
+      const startTime = new Date(now.getTime() + Math.floor(Math.random() * 6 * 60 * 60 * 1000));
+      const formattedTime = startTime.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+
+      rides.push({
+        id: i+1,
+        from,
+        to,
+        totalSeats,
+        seatsAvailable,
+        seatsBooked,
+        startTime: formattedTime
+      });
+    }
+
+    return rides;
+  }
+
+  function renderRides(rides) {
+    results.innerHTML = '';
+    rides.forEach(ride => {
+      const rideDiv = document.createElement('div');
+      rideDiv.className = 'ride-card';
+      rideDiv.innerHTML = `
+        <div class="ride-header">رحلة من ${ride.from} إلى ${ride.to}</div>
+        <div class="ride-details">
+          <p>عدد المقاعد الكلي: ${ride.totalSeats}</p>
+          <p>المقاعد المحجوزة: ${ride.seatsBooked}</p>
+          <p>المقاعد المتاحة: ${ride.seatsAvailable}</p>
+          <p>وقت الانطلاق: ${ride.startTime}</p>
+        </div>
+      `;
+      results.appendChild(rideDiv);
+    });
+  }
+
+  form.addEventListener('submit', e => {
     e.preventDefault();
+    message.textContent = '';
+    results.innerHTML = '';
 
     const from = form.from.value;
     const to = form.to.value;
-    const seats = form.seats.value;
 
-    if(from === to){
-      messageDiv.style.color = 'red';
-      messageDiv.textContent = 'يجب اختيار وجهة مختلفة عن الانطلاق.';
+    if(!from || !to) {
+      message.textContent = 'الرجاء اختيار مكان الانطلاق والوصول.';
+      return;
+    }
+    if(from === to) {
+      message.textContent = 'يجب اختيار مكان وصول مختلف عن مكان الانطلاق.';
       return;
     }
 
-    messageDiv.style.color = 'green';
-    messageDiv.textContent = `تم البحث عن رحلات من ${from} إلى ${to} لعدد ${seats} مقعد(مقاعد). (هذه صفحة تجريبية فقط)`;
+    const rides = generateRandomRides(from, to);
+    renderRides(rides);
   });
 </script>
 
