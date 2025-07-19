@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>تطبيق رحلات - بحث الرحلات</title>
+  <title>تطبيق رحلات - بحث الرحلات والدفع</title>
   <style>
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -54,6 +54,7 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      margin-top: 10px;
     }
     button:hover {
       background: #005bb5;
@@ -73,6 +74,7 @@
       margin-bottom: 15px;
       border-radius: 6px;
       background: #f7faff;
+      position: relative;
     }
     .ride-header {
       font-weight: 700;
@@ -84,11 +86,20 @@
       font-size: 0.95em;
       color: #444;
     }
+    .invoice {
+      margin-top: 15px;
+      padding: 12px;
+      background: #e0ffe0;
+      border: 1px solid #8fca8f;
+      border-radius: 6px;
+      font-size: 0.95em;
+      color: #2b662b;
+    }
   </style>
 </head>
 <body>
 
-<header>تطبيق رحلات - بحث الرحلات</header>
+<header>تطبيق رحلات - بحث الرحلات والدفع</header>
 
 <main>
   <form id="search-form">
@@ -134,6 +145,9 @@
       const startTime = new Date(now.getTime() + Math.floor(Math.random() * 6 * 60 * 60 * 1000));
       const formattedTime = startTime.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
 
+      // السعر عشوائي (مثلاً من 30 إلى 100 ريال)
+      const price = Math.floor(Math.random() * 70) + 30;
+
       rides.push({
         id: i+1,
         from,
@@ -141,7 +155,8 @@
         totalSeats,
         seatsAvailable,
         seatsBooked,
-        startTime: formattedTime
+        startTime: formattedTime,
+        price
       });
     }
 
@@ -160,9 +175,37 @@
           <p>المقاعد المحجوزة: ${ride.seatsBooked}</p>
           <p>المقاعد المتاحة: ${ride.seatsAvailable}</p>
           <p>وقت الانطلاق: ${ride.startTime}</p>
+          <p>السعر: ${ride.price} ريال</p>
+          <button class="pay-btn" data-ride-id="${ride.id}">ادفع الآن</button>
+          <div class="invoice" style="display:none;"></div>
         </div>
       `;
       results.appendChild(rideDiv);
+    });
+
+    // أضف مستمعين للأزرار بعد الإضافة
+    document.querySelectorAll('.pay-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const btn = e.target;
+        const rideCard = btn.closest('.ride-card');
+        const invoiceDiv = rideCard.querySelector('.invoice');
+        btn.disabled = true;
+        btn.textContent = 'جاري الدفع...';
+
+        // محاكاة الدفع (انتظر 2 ثانية)
+        setTimeout(() => {
+          btn.style.display = 'none';
+          invoiceDiv.style.display = 'block';
+          invoiceDiv.innerHTML = `
+            <h4>فاتورة الدفع</h4>
+            <p>تم الدفع بنجاح!</p>
+            <p>رحلة من <strong>${rideCard.querySelector('.ride-header').textContent.split(' من ')[1].split(' إلى ')[0]}</strong> إلى <strong>${rideCard.querySelector('.ride-header').textContent.split(' إلى ')[1]}</strong></p>
+            <p>السعر: <strong>${rideCard.querySelector('.ride-details p:nth-child(5)').textContent.split(' ')[1]} ريال</strong></p>
+            <p>وقت الانطلاق: <strong>${rideCard.querySelector('.ride-details p:nth-child(4)').textContent.split(' ')[2]}</strong></p>
+            <p>شكراً لاستخدامك تطبيق الرحلات!</p>
+          `;
+        }, 2000);
+      });
     });
   }
 
