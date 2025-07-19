@@ -1,77 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-  <title>Apple Pay مع Stripe</title>
-  <script src="https://js.stripe.com/v3/"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تطبيق رحلات بسيط</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+      direction: rtl;
+      color: #333;
+    }
+    header {
+      background: #0070f3;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    main {
+      max-width: 400px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      background: #0070f3;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1.1em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background: #005bb5;
+    }
+    #message {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
 </head>
 <body>
 
-<button id="apple-pay-button" style="display:none;">ادفع بـ Apple Pay</button>
+<header>تطبيق رحلات</header>
+
+<main>
+  <form id="ride-form">
+    <label for="from">من:</label>
+    <select id="from" name="from" required>
+      <option value="">اختر موقع الانطلاق</option>
+      <option value="alqassim">القصيم</option>
+      <option value="riyadh">الرياض</option>
+      <option value="jeddah">جدة</option>
+    </select>
+
+    <label for="to">إلى:</label>
+    <select id="to" name="to" required>
+      <option value="">اختر الوجهة</option>
+      <option value="riyadh">الرياض</option>
+      <option value="alqassim">القصيم</option>
+      <option value="jeddah">جدة</option>
+    </select>
+
+    <label for="seats">عدد المقاعد:</label>
+    <input type="number" id="seats" name="seats" min="1" max="6" value="1" required />
+
+    <button type="submit">ابحث عن رحلات</button>
+  </form>
+
+  <div id="message"></div>
+</main>
 
 <script>
-  const stripe = Stripe('pk_test_XXXXXXXXXXXXXXXXXXXX'); // استبدل بمفتاح الـ Publishable الخاص بك من Stripe
+  const form = document.getElementById('ride-form');
+  const messageDiv = document.getElementById('message');
 
-  async function setupApplePay() {
-    const applePaySessionAvailable = await stripe.applePay.checkAvailability();
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-    if (applePaySessionAvailable) {
-      document.getElementById('apple-pay-button').style.display = 'inline-block';
+    const from = form.from.value;
+    const to = form.to.value;
+    const seats = form.seats.value;
+
+    if(from === to){
+      messageDiv.style.color = 'red';
+      messageDiv.textContent = 'يجب اختيار وجهة مختلفة عن الانطلاق.';
+      return;
     }
-  }
 
-  document.getElementById('apple-pay-button').addEventListener('click', async () => {
-    // طلب الدفع إلى الخادم (الباك اند) لإنشاء PaymentIntent
-    const response = await fetch('/create-payment-intent', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ amount: 1000 }) // المبلغ بالسنت (10.00 دولار مثلاً)
-    });
-    const { clientSecret } = await response.json();
-
-    const paymentRequest = stripe.paymentRequest({
-      country: 'US', // غيره حسب البلد (مثلاً 'SA' للسعودية)
-      currency: 'usd', // غيره حسب العملة
-      total: {
-        label: 'رحلة توصيل',
-        amount: 1000, // نفس المبلغ
-      },
-      requestPayerName: true,
-      requestPayerEmail: true,
-      requestPayerPhone: true,
-    });
-
-    const elements = stripe.elements();
-    const prButton = elements.create('paymentRequestButton', {
-      paymentRequest,
-    });
-
-    paymentRequest.on('paymentmethod', async (ev) => {
-      const { error: confirmError } = await stripe.confirmCardPayment(
-        clientSecret,
-        { payment_method: ev.paymentMethod.id },
-        { handleActions: false }
-      );
-
-      if (confirmError) {
-        ev.complete('fail');
-        alert(confirmError.message);
-        return;
-      }
-      ev.complete('success');
-
-      const result = await stripe.confirmCardPayment(clientSecret);
-      if (result.error) {
-        alert(result.error.message);
-      } else {
-        alert('تم الدفع بنجاح!');
-        // هنا تنفذ منطق بعد الدفع (مثل تأكيد الرحلة)
-      }
-    });
-
-    prButton.mount('#apple-pay-button');
+    messageDiv.style.color = 'green';
+    messageDiv.textContent = `تم البحث عن رحلات من ${from} إلى ${to} لعدد ${seats} مقعد(مقاعد). (هذه صفحة تجريبية فقط)`;
   });
-
-  setupApplePay();
 </script>
 
 </body>
