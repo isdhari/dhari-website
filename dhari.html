@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>تطبيق الكابتن - إضافة رحلات</title>
+  <title>تطبيق الكابتن - إضافة رحلات مع حساب السعر</title>
   <style>
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -89,7 +89,7 @@
 </head>
 <body>
 
-<header>تطبيق الكابتن - إضافة رحلات</header>
+<header>تطبيق الكابتن - إضافة رحلات مع حساب السعر</header>
 
 <main>
   <form id="ride-form">
@@ -113,7 +113,7 @@
     <input type="number" id="seats" name="seats" min="1" max="10" required />
 
     <label for="price">سعر المقعد (ريال):</label>
-    <input type="number" id="price" name="price" min="10" required />
+    <input type="number" id="price" name="price" readonly />
 
     <label for="start-time">وقت الانطلاق:</label>
     <input type="time" id="start-time" name="start-time" required />
@@ -133,6 +133,37 @@
   const rideForm = document.getElementById('ride-form');
   const message = document.getElementById('message');
   const ridesContainer = document.getElementById('rides-container');
+  const fromSelect = rideForm.from;
+  const toSelect = rideForm.to;
+  const priceInput = rideForm.price;
+
+  // المسافات التقريبية بين المدن بالكيلومتر
+  const distances = {
+    "القصيم_الرياض": 400,
+    "القصيم_جدة": 700,
+    "الرياض_القصيم": 400,
+    "الرياض_جدة": 950,
+    "جدة_الرياض": 950,
+    "جدة_القصيم": 700
+  };
+
+  function calculatePrice(from, to) {
+    if (!from || !to || from === to) return 0;
+    const key = `${from}_${to}`;
+    const dist = distances[key];
+    if(!dist) return 0;
+    return dist * 0.10; // 10 هللات لكل كيلومتر
+  }
+
+  function updatePrice() {
+    const from = fromSelect.value;
+    const to = toSelect.value;
+    const price = calculatePrice(from, to);
+    priceInput.value = price ? price.toFixed(2) : '';
+  }
+
+  fromSelect.addEventListener('change', updatePrice);
+  toSelect.addEventListener('change', updatePrice);
 
   let rides = [];
 
@@ -161,10 +192,10 @@
     e.preventDefault();
     message.textContent = '';
 
-    const from = rideForm.from.value;
-    const to = rideForm.to.value;
+    const from = fromSelect.value;
+    const to = toSelect.value;
     const seats = parseInt(rideForm.seats.value, 10);
-    const price = parseFloat(rideForm.price.value);
+    const price = parseFloat(priceInput.value);
     const startTime = rideForm['start-time'].value;
 
     if(!from || !to) {
@@ -179,8 +210,8 @@
       message.textContent = 'عدد المقاعد يجب أن يكون على الأقل 1.';
       return;
     }
-    if(price < 10) {
-      message.textContent = 'سعر المقعد يجب أن يكون 10 ريال أو أكثر.';
+    if(price <= 0) {
+      message.textContent = 'السعر غير صالح، تحقق من الأماكن المختارة.';
       return;
     }
     if(!startTime) {
@@ -198,6 +229,7 @@
 
     renderRides();
     rideForm.reset();
+    priceInput.value = '';
     message.textContent = 'تم إضافة الرحلة بنجاح!';
     setTimeout(() => message.textContent = '', 3000);
   });
