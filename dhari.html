@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تطبيق الكابتن - إضافة رحلات</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      direction: rtl;
+      color: #333;
+    }
+    header {
+      background: #0070f3;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      background: #0070f3;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1.1em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #005bb5;
+    }
+    #message {
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+      color: red;
+    }
+    #rides-list {
+      margin-top: 25px;
+    }
+    .ride-card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      background: #f7faff;
+    }
+    .ride-header {
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 1.1em;
+      color: #005bb5;
+    }
+    .ride-details {
+      font-size: 0.95em;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+<header>تطبيق الكابتن - إضافة رحلات</header>
+
+<main>
+  <form id="ride-form">
+    <label for="from">مكان الانطلاق:</label>
+    <select id="from" name="from" required>
+      <option value="">اختر مكان الانطلاق</option>
+      <option value="القصيم">القصيم</option>
+      <option value="الرياض">الرياض</option>
+      <option value="جدة">جدة</option>
+    </select>
+
+    <label for="to">مكان الوصول:</label>
+    <select id="to" name="to" required>
+      <option value="">اختر مكان الوصول</option>
+      <option value="الرياض">الرياض</option>
+      <option value="القصيم">القصيم</option>
+      <option value="جدة">جدة</option>
+    </select>
+
+    <label for="seats">عدد المقاعد الكلي:</label>
+    <input type="number" id="seats" name="seats" min="1" max="10" required />
+
+    <label for="price">سعر المقعد (ريال):</label>
+    <input type="number" id="price" name="price" min="10" required />
+
+    <label for="start-time">وقت الانطلاق:</label>
+    <input type="time" id="start-time" name="start-time" required />
+
+    <button type="submit">إضافة رحلة</button>
+  </form>
+
+  <div id="message"></div>
+
+  <div id="rides-list">
+    <h3>رحلاتي المضافة</h3>
+    <div id="rides-container"></div>
+  </div>
+</main>
+
+<script>
+  const rideForm = document.getElementById('ride-form');
+  const message = document.getElementById('message');
+  const ridesContainer = document.getElementById('rides-container');
+
+  let rides = [];
+
+  function renderRides() {
+    ridesContainer.innerHTML = '';
+    if(rides.length === 0) {
+      ridesContainer.innerHTML = '<p>لم تقم بإضافة أي رحلة حتى الآن.</p>';
+      return;
+    }
+    rides.forEach((ride, index) => {
+      const rideDiv = document.createElement('div');
+      rideDiv.className = 'ride-card';
+      rideDiv.innerHTML = `
+        <div class="ride-header">رحلة من ${ride.from} إلى ${ride.to}</div>
+        <div class="ride-details">
+          <p>عدد المقاعد: ${ride.seats}</p>
+          <p>سعر المقعد: ${ride.price} ريال</p>
+          <p>وقت الانطلاق: ${ride.startTime}</p>
+        </div>
+      `;
+      ridesContainer.appendChild(rideDiv);
+    });
+  }
+
+  rideForm.addEventListener('submit', e => {
+    e.preventDefault();
+    message.textContent = '';
+
+    const from = rideForm.from.value;
+    const to = rideForm.to.value;
+    const seats = parseInt(rideForm.seats.value, 10);
+    const price = parseFloat(rideForm.price.value);
+    const startTime = rideForm['start-time'].value;
+
+    if(!from || !to) {
+      message.textContent = 'الرجاء اختيار مكان الانطلاق والوصول.';
+      return;
+    }
+    if(from === to) {
+      message.textContent = 'مكان الانطلاق يجب أن يختلف عن مكان الوصول.';
+      return;
+    }
+    if(seats < 1) {
+      message.textContent = 'عدد المقاعد يجب أن يكون على الأقل 1.';
+      return;
+    }
+    if(price < 10) {
+      message.textContent = 'سعر المقعد يجب أن يكون 10 ريال أو أكثر.';
+      return;
+    }
+    if(!startTime) {
+      message.textContent = 'الرجاء تحديد وقت الانطلاق.';
+      return;
+    }
+
+    rides.push({
+      from,
+      to,
+      seats,
+      price,
+      startTime
+    });
+
+    renderRides();
+    rideForm.reset();
+    message.textContent = 'تم إضافة الرحلة بنجاح!';
+    setTimeout(() => message.textContent = '', 3000);
+  });
+
+  renderRides();
+</script>
+
+</body>
+</html>
