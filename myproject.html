@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Apple Pay مع Stripe</title>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+
+<button id="apple-pay-button" style="display:none;">ادفع بـ Apple Pay</button>
+
+<script>
+  const stripe = Stripe('pk_test_XXXXXXXXXXXXXXXXXXXX'); // استبدل بمفتاح الـ Publishable الخاص بك من Stripe
+
+  async function setupApplePay() {
+    const applePaySessionAvailable = await stripe.applePay.checkAvailability();
+
+    if (applePaySessionAvailable) {
+      document.getElementById('apple-pay-button').style.display = 'inline-block';
+    }
+  }
+
+  document.getElementById('apple-pay-button').addEventListener('click', async () => {
+    // طلب الدفع إلى الخادم (الباك اند) لإنشاء PaymentIntent
+    const response = await fetch('/create-payment-intent', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ amount: 1000 }) // المبلغ بالسنت (10.00 دولار مثلاً)
+    });
+    const { clientSecret } = await response.json();
+
+    const paymentRequest = stripe.paymentRequest({
+      country: 'US', // غيره حسب البلد (مثلاً 'SA' للسعودية)
+      currency: 'usd', // غيره حسب العملة
+      total: {
+        label: 'رحلة توصيل',
+        amount: 1000, // نفس المبلغ
+      },
+      requestPayerName: true,
+      requestPayerEmail: true,
+      requestPayerPhone: true,
+    });
+
+    const elements = stripe.elements();
+    const prButton = elements.create('paymentRequestButton', {
+      paymentRequest,
+    });
+
+    paymentRequest.on('paymentmethod', async (ev) => {
+      const { error: confirmError } = await stripe.confirmCardPayment(
+        clientSecret,
+        { payment_method: ev.paymentMethod.id },
+        { handleActions: false }
+      );
+
+      if (confirmError) {
+        ev.complete('fail');
+        alert(confirmError.message);
+        return;
+      }
+      ev.complete('success');
+
+      const result = await stripe.confirmCardPayment(clientSecret);
+      if (result.error) {
+        alert(result.error.message);
+      } else {
+        alert('تم الدفع بنجاح!');
+        // هنا تنفذ منطق بعد الدفع (مثل تأكيد الرحلة)
+      }
+    });
+
+    prButton.mount('#apple-pay-button');
+  });
+
+  setupApplePay();
+</script>
+
+</body>
+</html>
