@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>عيدكم مبارك</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
     body {
-      background-color: #0046a5; /* خلفية زرقاء */
+      background-color: #003b99; /* أزرق غامق */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -18,10 +16,14 @@
 
     h1 {
       color: #ff5c00; /* برتقالي */
-      font-family: 'Press Start 2P', cursive; /* خط بكسلي */
-      font-size: 60px; /* بكسلات كبيرة */
+      font-family: monospace; /* خط بسيط مربّع */
+      font-size: 40px;
       text-align: center;
-      image-rendering: pixelated; /* يحافظ على مظهر البكسلات */
+      /* تضخيم البكسلات */
+      transform: scale(8);
+      transform-origin: center;
+      image-rendering: pixelated;
+      letter-spacing: 2px;
     }
   </style>
 </head>
